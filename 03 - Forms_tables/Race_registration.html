@@ -1,0 +1,89 @@
+<!-- @format -->
+
+<!DOCTYPE html>
+<html lang="en">
+     <head>
+          <meta charset="UTF-8" />
+          <meta
+               name="viewport"
+               content="width=device-width, initial-scale=1.0"
+          />
+          <title>Race Registration</title>
+     </head>
+     <body>
+          <h1>Race Registration</h1>
+          <p>Please fill out the form below to register for the Marathon.</p>
+
+          <form action="">
+               <div>
+                    <p>
+                         <label for="fname">Enter First Name</label>
+                         <input
+                              type="text"
+                              id="fname"
+                              name="fname"
+                              placeholder="Enter First Name"
+                              required
+                         />
+
+                         <label for="lname">Enter Last Name</label>
+                         <input
+                              type="text"
+                              id="lname"
+                              name="lname"
+                              placeholder="Enter Last Name"
+                              required
+                         />
+                    </p>
+               </div>
+               <div>
+                    
+                    <p>
+                         <label for="age">Age Group </label>
+                         <select name="age" id="age" required>
+                              <option value="" disabled selected>
+                                   Select Age Group
+                              </option>
+                              <option value="15-20">15-20</option>
+                              <option value="21-25">21-25</option>
+                              <option value="26-30">23-30</option>
+                              <option value="30+">30+</option>
+                         </select>
+<h2>Select a Race</h2>
+                         <p><label >Select Category</label>
+                              <br><br>
+                              <input type="radio" id="type1" name="opt" required
+                                   value="5km" 
+                                   />
+                                   <label for="type1">Full Fun 5k</label>
+                                   <br>
+                              <input type="radio" id="type2" name="opt" 
+                                   value="10km" 
+                                   />
+                                   <label for="type2">Half Marathon</label>
+                                   <br>
+                              <input type="radio" id="type3" name="opt" 
+                                   value="20km" 
+                                   />
+                                   <label for="type3">Full Marathon</label>
+
+
+                         </p>
+                    </p>
+               </div>
+               <div>
+                    <p><label for="email">Email </label>
+                    <input type="email" required
+                         id="email"
+                         name="email"
+                         placeholder="Enter Email">
+                    <label for="pass">Password</label>
+                    <input type="password" required
+                              id="pass"
+                              name="p"
+                              placeholder="Password"></p>
+               </div>
+               <button>Submit</button>
+          </form>
+     </body>
+</html>
