@@ -1,0 +1,155 @@
+<!-- @format -->
+
+<!DOCTYPE html>
+<html lang="en">
+     <head>
+          <meta charset="UTF-8" />
+          <meta
+               name="viewport"
+               content="width=device-width, initial-scale=1.0"
+          />
+          <title>All forms in html</title>
+     </head>
+     <body>
+          <h1>Forms</h1>
+
+          <p>
+               Forms are used to collect user input. They can include text
+               fields, checkboxes, radio buttons, and more.
+          </p>
+
+          <h2>Basic Form Example</h2>
+          <h3>Doing this for a wedding</h3>
+          <form>
+               <p>
+                    <label for="username">Please Enter Username </label>
+                    <input
+                         type="text"
+                         id="username"
+                         name="username"
+                         placeholder="Enter Your Username"
+                    />
+               </p>
+               <p>
+                    <label for="pass">Enter Password </label>
+                    <input
+                         type="password"
+                         id="pass"
+                         name="pass"
+                         placeholder="Enter Password"
+                    />
+               </p>
+               <p>
+                    <label for="color">Pick Favourite Color </label>
+                    <input type="color" id="color" name="color" />
+               </p>
+               <p>
+                    <label for="date">Pick a Date </label>
+                    <input type="date" id="date" name="date" />
+               </p>
+               <p>
+                    <label for="email">Enter Email </label>
+                    <input
+                         type="email"
+                         id="email"
+                         name="email"
+                         placeholder="Enter Email"
+                    />
+               </p>
+               <p>
+                    <label for="number">Enter a Number </label>
+                    <input
+                         type="number"
+                         id="number"
+                         name="number"
+                         placeholder="Enter a Number"
+                         min="1"
+                         max="1000"
+                         step="1"
+                    />
+               </p>
+
+               <p>
+                    <label for="vol">Select volume for music </label>
+                    <input
+                         type="range"
+                         id="vol"
+                         name="vol"
+                         min="1"
+                         max="100"
+                         step="1"
+                         selected="20"
+                    />
+                    <button>Submit</button>
+               </p>
+
+               <p>
+                    <label for="select">Select an Entree </label>
+                    <select id="select" name="select" selected="f">
+                         <option value="s">Steak</option>
+                         <option value="c">Chicken</option>
+                         <option value="f">Fish</option>
+                    </select>
+               </p>
+               <p>
+                    <label for="textarea">Any request </label>
+                    <br />
+                    <textarea
+                         id="textarea"
+                         name="textarea"
+                         rows="4"
+                         cols="50"
+                         placeholder="Enter a Message"
+                    ></textarea>
+               </p>
+               <p>
+                    <input
+                         type="checkbox"
+                         id="checkbox"
+                         name="checkbox"
+                         value="agree"
+                    />
+                    <label for="checkbox"
+                         >I agree to the terms and conditions</label
+                    >
+               </p>
+               <p>
+                    <input type="radio" id="radio1" name="radio" value="ven1" />
+                    <label for="radio1">Venue 1</label>
+                    <input type="radio" id="radio2" name="radio" value="ven2" />
+                    <label for="radio2">Venue 2</label>
+               </p>
+               <p>
+                    <input type="submit" value="Submit" />
+                    <input type="reset" value="Reset" />
+               </p>
+          </form>
+          <h2>Search the venue</h2>
+          <form action="https://www.google.com/search" method="get">
+               <p>
+                    <label for="search">Google.com </label>
+                    <br />
+                    <input
+                         type="text"
+                         id="search"
+                         name="q"
+                         placeholder="Search Google"
+                    />
+                    <button>Search</button>
+               </p>
+          </form>
+
+          <h2>That's most of the forms</h2>
+          <p>
+               Forms can be used for various purposes, such as user
+               registration, login, and data submission.
+          </p>
+          <p>
+               For more information on forms, you can refer to the
+               <a
+                    href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form"
+                    >MDN Web Docs</a
+               >.
+          </p>
+     </body>
+</html>
