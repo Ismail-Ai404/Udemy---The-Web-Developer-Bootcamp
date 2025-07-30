@@ -1,0 +1,36 @@
+nav a{
+     font-size: 50px;
+     color: teal;
+
+}
+
+#likes{
+     color: orange;
+     /* font-size: 30px; */
+     text-decoration: underline;
+}
+
+.class #home{
+     color: blue;
+     /* font-size: 30px; */
+}
+.class #home:hover{
+     color: green;
+     /* font-size: 30px; */
+}
+
+nav a:hover{
+     color: darkslategray;
+}
+#likes:hover{
+     color: yellow;
+}
+#dislikes{
+     color: darkred;
+     /* font-size: 20px; */
+     text-decoration: underline;
+}
+#dislikes:hover{
+     color: red;
+     text-decoration: line-through;
+}
