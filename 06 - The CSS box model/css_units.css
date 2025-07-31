@@ -1,0 +1,15 @@
+html{
+     font-size: 16px;
+}
+.section_em{
+     font-size: 30px;
+}
+.section_rem{
+     font-size: 2rem;
+}
+ul{
+     font-size: .7em;
+}
+ol{
+     font-size: 3rem;
+}
