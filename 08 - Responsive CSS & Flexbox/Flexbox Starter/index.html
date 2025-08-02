@@ -95,7 +95,15 @@
                <div style="background-color: #80ffdb">H</div>
                <div style="background-color: #64dfdf">E</div>
                <div style="background-color: #48bfe3">L</div>
-               <div style="background-color: #5390d9; height: 50px">L</div>
+               <div
+                    style="
+                         background-color: #5390d9;
+                         height: 400px;
+                         font-size: 4em;
+                    "
+               >
+                    L
+               </div>
                <div style="background-color: #6930c3">O</div>
           </section>
           <p>
@@ -104,6 +112,54 @@
                <code>stretch</code>, <code>flex-start</code>,
                <code>flex-end</code>, <code>center</code>, or
                <code>baseline</code>.
+          </p>
+          <h2>Align Content</h2>
+          <p>
+               The <code>align-content</code> property defines how the flex
+               lines are aligned in the flex container. You can change it to see
+               how the alignment of the lines changes. For this to work,
+               <code>wrap</code> needs to be set to <code>true</code>. It can be
+               set to stretch, start, end, center, space-between, or
+               space-around. And it only works when there are multiple lines of
+               flex items. It works in the cross-axis direction.
+          </p>
+          <section id="container5">
+               <div style="background-color: #80ffdb">H</div>
+               <div style="background-color: #64dfdf">E</div>
+               <div style="background-color: #48bfe3">L</div>
+               <div style="background-color: #5390d9">L</div>
+               <div style="background-color: #6930c3">O</div>
+          </section>
+          <p>
+               Change the <code>align-content</code> property in the CSS to see
+               how it affects the alignment of the lines. You can set it to
+               <code>stretch</code>, <code>flex-start</code>,
+               <code>flex-end</code>, <code>center</code>,
+               <code>space-between</code>, or <code>space-around</code>.
+          </p>
+          <h2>Align Self</h2>
+          <p>
+               The <code>align-self</code> property allows the default alignment
+               (or the one specified by <code>align-items</code>) to be
+               overridden for individual flex items. You can change it to see
+               how the alignment of the individual boxes changes.
+          </p>
+          <section id="container6">
+               <div style="background-color: #80ffdb">1</div>
+               <div id="align-self2" ; style="background-color: #64dfdf">2</div>
+               <div id="align-self3" ; style="background-color: #48bfe3">3</div>
+               <div style="background-color: #5390d9">4</div>
+               <div style="background-color: #6930c3">5</div>
+          </section>
+          <p>
+               Change the <code>align-self</code> property in the CSS to see how
+               it affects the alignment of the individual boxes. You can set it
+               to <code>auto</code>, <code>flex-start</code>,
+               <code>flex-end</code>, <code>center</code>,
+               <code>baseline</code>, or <code>stretch</code>. Note that this
+               property only applies to the individual flex items and overrides
+               the <code>align-items</code> property for that item. Can't be
+               used when align-content is on.
           </p>
      </body>
 </html>

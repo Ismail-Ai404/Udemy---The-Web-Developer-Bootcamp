@@ -147,6 +147,58 @@ p {
 
     /* align-items: flex-end; */
 
+    align-items: center;
+
+    /* align-items: baseline; */
+
+    /* align-items: stretch; */
+
+    /* align-items: center; */
+
+}
+
+#container5 {
+    background-color: #003049;
+    width: 90%;
+    height: 600px;
+    margin: 0 auto;
+    border: 5px solid #003049;
+    display: flex;
+
+    /* Uncomment one of the following lines to see the effect */
+    
+    flex-direction: row; 
+
+    /* flex-direction: row-reverse;  */
+
+    /* flex-direction: column;  */
+    
+    /* flex-direction: column-reverse;  */
+    
+    /* default state is flex-start */
+
+    /* justify-content: flex-start;  */
+
+    /* justify-content: flex-end; */
+
+    /* justify-content: center; */
+
+    /* justify-content: space-between; */
+
+    /* justify-content: space-around; */
+
+    justify-content: space-evenly;
+
+    flex-wrap: nowrap;
+
+    flex-wrap: wrap;
+
+    /* flex-wrap: wrap-reverse; */
+
+    /* align-items: flex-start; */
+
+    /* align-items: flex-end; */
+
     /* align-items: center; */
 
     align-items: baseline;
@@ -155,16 +207,123 @@ p {
 
     /* align-items: center; */
 
+    /* align-content: flex-start; */
 
+    /* align-content: flex-end; */
 
+    /* align-content: center; */
 
+    /* align-content: space-between; */
 
+    /* align-content: space-around; */
+
+    align-content: space-evenly;
+
+    /* align-content: stretch; */
+
+}
+
+#container6 {
+    background-color: #003049;
+    width: 90%;
+    height: 600px;
+    margin: 0 auto;
+    border: 5px solid #003049;
+    display: flex;
+
+    /* Uncomment one of the following lines to see the effect */
+    
+    flex-direction: row; 
+
+    /* flex-direction: row-reverse;  */
+
+    /* flex-direction: column;  */
+    
+    /* flex-direction: column-reverse;  */
+    
+    /* default state is flex-start */
+
+    /* justify-content: flex-start;  */
+
+    /* justify-content: flex-end; */
+
+    /* justify-content: center; */
+
+    justify-content: space-between;
+
+    /* justify-content: space-around; */
+
+    /* justify-content: space-evenly; */
+
+    flex-wrap: nowrap;
+
+    flex-wrap: wrap;
+
+    /* flex-wrap: wrap-reverse; */
+
+    /* align-items: flex-start; */
+
+    /* align-items: flex-end; */
+
+    align-items: center;
+
+    /* align-items: baseline; */
+
+    /* align-items: stretch; */
+
+    /* align-items: center; */
+
+    /* align-content: flex-start; */
+
+    /* align-content: flex-end; */
+
+    /* align-content: center; */
+
+    /* align-content: space-between; */
+
+    /* align-content: space-around; */
+
+    /* align-content: space-evenly; */
+
+    /* align-content: stretch; */
+
+}
+
+#align-self2{
+    
+    /* Uncomment one of the following lines to see the effect */
+    
+    align-self: flex-start;
+
+    /* align-self: flex-end; */
+
+    /* align-self: center; */
+
+    /* align-self: baseline; */
+
+    /* align-self: stretch; */
+}
+#align-self3{
+    
+    /* Uncomment one of the following lines to see the effect */
+    
+    /* align-self: flex-start; */
+
+    align-self: flex-end;
+
+    /* align-self: center; */
+
+    /* align-self: baseline; */
+
+    /* align-self: stretch; */
 }
 
 div:nth-of-type(n) {
     width: 100px;
     height: 100px;
     font-size: 2em;
+    text-align: center;
+    line-height: 100px;
 }
 
 
