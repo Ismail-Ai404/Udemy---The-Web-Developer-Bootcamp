@@ -1,0 +1,93 @@
+<!-- @format -->
+
+<!DOCTYPE html>
+<html lang="en">
+     <head>
+          <meta charset="UTF-8" />
+          <meta
+               name="viewport"
+               content="width=device-width, initial-scale=1.0"
+          />
+          <title>Flexbox Playground</title>
+          <link
+               href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap"
+               rel="stylesheet"
+          />
+
+          <link rel="stylesheet" href="app.css" />
+     </head>
+
+     <body>
+          <h1>Let's Play With Flexbox</h1>
+          <h2>Shrink, Grow and Basis</h2>
+          <h3>Shrink</h3>
+          <p>
+               The <strong>flex-shrink</strong> property defines the ability for
+               a flex item to shrink if necessary. It accepts a unitless value
+               that serves as a proportion. For example, if one item has a
+               flex-shrink of 1 and another has a flex-shrink of 2, the second
+               item will shrink twice as much as the first one. Can be used by
+               code <code>flex-shrink: 2</code>
+          </p>
+          <h3>Grow</h3>
+          <p>
+               The <strong>flex-grow</strong> property defines the ability for a
+               flex item to grow if necessary. It also accepts a unitless value
+               that serves as a proportion. For example, if one item has a
+               flex-grow of 1 and another has a flex-grow of 2, the second item
+               will grow twice as much as the first one. Can be used by code
+               <code>flex-grow: 2</code>
+          </p>
+          <h3>Basis</h3>
+          <p>
+               The <strong>flex-basis</strong> property defines the default size
+               of an element before the remaining space is distributed. It can
+               be set to a specific length (like px, em, etc.) or a percentage.
+               If set to auto, it will use the element's width or height
+               property. Can be used by code <code>flex-basis: 200px</code>
+          </p>
+
+          <section id="container">
+               <div style="background-color: #80ffdb"></div>
+               <div style="background-color: #64dfdf"></div>
+               <div style="background-color: #48bfe3"></div>
+               <div style="background-color: #5390d9"></div>
+               <div style="background-color: #6930c3"></div>
+          </section>
+          <p></p>
+
+          <h2>Another Example</h2>
+          <p>
+               In this example, we will create a layout with three sections: two
+               sidebars and one main content area. The sidebars will have a
+               <strong>flex-grow</strong> of 1, meaning they will grow equally
+               to fill the available space, while the main content area will
+               have a <strong>flex-grow</strong> of 2, meaning it will take up
+               twice as much space as each sidebar. The
+               <strong>flex-shrink</strong> will be set to 1 for maincontent and
+               2 for sidebars, meaning the sidebars will shrink proportionally
+               more than the main content area if the container becomes smaller.
+               The <strong>flex-basis</strong> will be set to 800px for the main
+               content area and 300px for each sidebar, meaning the main content
+               area will start with a width of 800px and each sidebar will start
+               with a width of 300px. The final CSS will look like this:
+               <code>display: flex</code> on the container, and then
+               <code>flex:2 1 800px</code> for main content and
+               <code>flex:1 2 300px</code> for sidebars.
+          </p>
+          <main>
+               <section class="sidebar"></section>
+               <section class="maincontent"></section>
+               <section class="sidebar"></section>
+          </main>
+          <p>
+               Here is another example of Flexbox with different properties
+               applied to the sidebar and main content sections. To apply
+               Flexbox properties, you can use the following CSS:
+               <code>flex: 1 2 30px</code> where the first number is the
+               <strong>flex-grow</strong>, the second is the
+               <strong>flex-shrink</strong>, and the third is the
+               <strong>flex-basis</strong>.
+          </p>
+     </body>
+</html>
