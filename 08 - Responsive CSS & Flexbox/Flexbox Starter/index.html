@@ -1,0 +1,109 @@
+<!-- @format -->
+
+<!DOCTYPE html>
+<html lang="en">
+     <head>
+          <meta charset="UTF-8" />
+          <meta
+               name="viewport"
+               content="width=device-width, initial-scale=1.0"
+          />
+          <title>Flexbox Playground</title>
+          <link
+               href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap"
+               rel="stylesheet"
+          />
+
+          <link rel="stylesheet" href="app.css" />
+     </head>
+
+     <body>
+          <h1>Let's Play With Flexbox</h1>
+          <p>
+               This is a playground to experiment with Flexbox properties. You
+               can modify the CSS in the <code>app.css</code> file to see how
+               the layout changes.
+          </p>
+
+          <h2>Flex Direction</h2>
+          <p>
+               The <code>flex-direction</code> property defines the direction in
+               which the flex items are placed in the flex container. You can
+               change it to see how the layout of the boxes changes. Can be in
+               the x-axis (row) or y-axis (column) and can be reversed.
+          </p>
+          <section id="container1">
+               <div style="background-color: #80ffdb"></div>
+               <div style="background-color: #64dfdf"></div>
+               <div style="background-color: #48bfe3"></div>
+               <div style="background-color: #5390d9"></div>
+               <div style="background-color: #6930c3"></div>
+          </section>
+          <p>
+               Change the <code>flex-direction</code> property in the CSS to see
+               how it affects the layout of the boxes. flex-direction can be set
+               to <code>row</code>, <code>column</code>,
+               <code>row-reverse</code>, or <code>column-reverse</code>.
+          </p>
+          <h2>Justify Content</h2>
+          <p>
+               The <code>justify-content</code> property defines how the flex
+               items are aligned along the main axis. You can change it to see
+               how the alignment of the boxes changes. It can be either at the
+               start (default), end, center, spaced out or spaced out evenly.
+          </p>
+          <section id="container2">
+               <div style="background-color: #80ffdb"></div>
+               <div style="background-color: #64dfdf"></div>
+               <div style="background-color: #48bfe3"></div>
+               <div style="background-color: #5390d9"></div>
+               <div style="background-color: #6930c3"></div>
+          </section>
+          <p>
+               Change the <code>justify-content</code> property in the CSS to
+               see how it affects the alignment of the boxes. You can set it to
+               <code>flex-start</code>, <code>flex-end</code>,
+               <code>center</code>, <code>space-between</code>, or
+               <code>space-around</code>.
+          </p>
+          <h2>Flex Wrap</h2>
+          <p>
+               The <code>flex-wrap</code> property defines whether the flex
+               items should wrap onto multiple lines. You can change it to see
+               how the layout changes when items wrap.
+          </p>
+          <section id="container3">
+               <div style="background-color: #80ffdb"></div>
+               <div style="background-color: #64dfdf"></div>
+               <div style="background-color: #48bfe3"></div>
+               <div style="background-color: #5390d9"></div>
+               <div style="background-color: #6930c3"></div>
+          </section>
+          <p>
+               Change the <code>flex-wrap</code> property in the CSS to see how
+               it affects the layout of the boxes. You can set it to
+               <code>nowrap</code>, <code>wrap</code>, or
+               <code>wrap-reverse</code>.
+          </p>
+          <h2>Align Items</h2>
+          <p>
+               The <code>align-items</code> property defines how the flex items
+               are aligned along the cross axis. You can change it to see how
+               the alignment of the boxes changes.
+          </p>
+          <section id="container4">
+               <div style="background-color: #80ffdb">H</div>
+               <div style="background-color: #64dfdf">E</div>
+               <div style="background-color: #48bfe3">L</div>
+               <div style="background-color: #5390d9; height: 50px">L</div>
+               <div style="background-color: #6930c3">O</div>
+          </section>
+          <p>
+               Change the <code>align-items</code> property in the CSS to see
+               how it affects the alignment of the boxes. You can set it to
+               <code>stretch</code>, <code>flex-start</code>,
+               <code>flex-end</code>, <code>center</code>, or
+               <code>baseline</code>.
+          </p>
+     </body>
+</html>
