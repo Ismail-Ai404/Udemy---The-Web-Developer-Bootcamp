@@ -1,0 +1,166 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+
+body {
+  font-family: 'Open Sans', sans-serif;
+  background-color: #60a9ff;
+  /* color: #333; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 80vh;
+  /* max-height: 85vh; */
+}
+
+.panel {
+
+    display: flex;
+  width: 100%;
+  max-width: 960px;
+  /* margin: 0 auto; */
+  padding: 15px 20px;
+     background-color: #fff;
+    border-radius: 8px;
+    flex-direction: column;
+    text-align: center;
+}
+
+.pricing-plan  {
+  border-bottom: 1px solid #e1f1ff;
+    padding: 20px 0px;
+}
+.pricing-plan:last-child {
+  border-bottom: none;
+}
+
+.pricing-img{
+  max-width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 20px;}
+
+.pricing-plan h2 {
+  font-size: 24px;
+  font-weight: 700;
+    color: lightslategray;
+    margin-bottom: 10px;
+}
+
+.pricing-price {
+    display: block;
+  font-size: 32px;
+  font-weight: bold;
+  color: #1c4470;
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+
+.pricing-features  li{
+    font-size: 26px;
+    font-weight: 500;
+    color: #60a9ff;
+    border-top: 1px solid #e1f1ff;
+  padding: 10px 0;
+  margin: 0;
+}
+
+.pricing-features li:last-child {
+    border-bottom: 1px solid #e1f1ff;
+}
+
+.pricing-button {
+  display: inline-block;
+  /* font-size: 18px; */
+  font-weight: bold;
+  color: #348efe;
+  /* background-color: #1c4470; */
+  border: 1px solid #9dd1ff;
+  border-radius: 10px;
+  text-decoration: none;
+  transition: background-color 200ms ease-in-out, color 200ms ease-in-out;
+  padding: 15px 35px;
+  margin: 25px 0;
+}
+.pricing-button:hover, .pricing-button:focus {
+  background-color: #1c4470;
+  color: #fff;
+}
+
+.pricing-button.is-featured {
+  background-color: #48af;
+  color: #fff;
+  transition: background-color 200ms ease-in-out, color 200ms ease-in-out;
+  /* border: none; */
+}
+.pricing-button.is-featured:hover, .pricing-button.is-featured:focus {
+  background-color: #269aff;
+  color: #fff;
+}
+
+@media screen and (min-width: 900px) {
+    /* For larger screens, adjust the layout */
+    
+  .panel {
+    flex-direction: row;
+  }
+    .pricing-plan {
+        border-bottom:none ;
+        border-right: 1px solid #e1f1ff;
+        padding: 25px 50px;
+
+  
+  
+  }
+    .pricing-plan:last-child {
+        border-right: none;
+    }
+    
+}
