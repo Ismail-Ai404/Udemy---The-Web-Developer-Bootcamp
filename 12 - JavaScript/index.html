@@ -273,7 +273,104 @@ console.log(str.length); // 5</code></pre>
           <!-- Navbar -->
           <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
                <div class="container">
-                    <a class="navbar-brand" href="#">JS Conditionals</a>
+                    <a class="navbar-brand" href="#">JS Operators</a>
+               </div>
+          </nav>
+
+          <div class="container my-5">
+               <h1 class="text-center mb-4">JavaScript Comparison Operators</h1>
+               <p class="lead text-center">
+                    These operators are used to compare values and determine
+                    equality or inequality in JavaScript.
+               </p>
+
+               <!-- Strict Equality (===) -->
+               <div class="card mb-4 shadow-sm">
+                    <div class="card-body">
+                         <h5 class="card-title">=== (Strict Equality)</h5>
+                         <p>
+                              Compares both <strong>value</strong> and
+                              <strong>type</strong>. Returns true only if both
+                              are identical.
+                         </p>
+                         <pre><code>console.log(5 === 5);    // true
+console.log(5 === "5");  // false</code></pre>
+                    </div>
+               </div>
+
+               <!-- Strict Inequality (!==) -->
+               <div class="card mb-4 shadow-sm">
+                    <div class="card-body">
+                         <h5 class="card-title">!== (Strict Inequality)</h5>
+                         <p>
+                              True if <strong>value</strong> or
+                              <strong>type</strong> is different.
+                         </p>
+                         <pre><code>console.log(5 !== 5);    // false
+console.log(5 !== "5");  // true</code></pre>
+                    </div>
+               </div>
+
+               <!-- Loose Equality (==) -->
+               <div class="card mb-4 shadow-sm">
+                    <div class="card-body">
+                         <h5 class="card-title">== (Loose Equality)</h5>
+                         <p>
+                              Compares <strong>values</strong> only, performs
+                              <strong>type coercion</strong> if necessary.
+                         </p>
+                         <pre><code>console.log(5 == "5");   // true
+console.log(null == undefined); // true</code></pre>
+                         <p>
+                              <strong>Warning:</strong> Type coercion can lead
+                              to unexpected results, so use with caution.
+                         </p>
+                    </div>
+               </div>
+
+               <!-- Loose Inequality (!=) -->
+               <div class="card mb-4 shadow-sm">
+                    <div class="card-body">
+                         <h5 class="card-title">!= (Loose Inequality)</h5>
+                         <p>
+                              Checks if values are not equal, with type
+                              coercion.
+                         </p>
+                         <pre><code>console.log(5 != "5");   // false
+console.log(0 != false); // false (because 0 is coerced to false)</code></pre>
+                    </div>
+               </div>
+
+               <!-- Key Differences -->
+               <h2 class="mb-3 text-center">
+                    Key Differences Between Strict and Loose Equality
+               </h2>
+               <div class="card mb-4 shadow-sm">
+                    <div class="card-body">
+                         <ul class="list-group list-group-flush">
+                              <li class="list-group-item">
+                                   <strong>=== / !==</strong>: No type
+                                   conversion; compares type and value (strict).
+                              </li>
+                              <li class="list-group-item">
+                                   <strong>== / !=</strong>: Performs type
+                                   coercion; only compares value (loose).
+                              </li>
+                         </ul>
+                         <pre
+                              class="mt-3"
+                         ><code>console.log(0 == false);  // true (coerced)
+console.log(0 === false); // false (different types)</code></pre>
+                    </div>
+               </div>
+          </div>
+
+          <!-- Navbar -->
+          <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+               <div class="container">
+                    <a class="navbar-brand" href="#"
+                         >JS Booleans & Conditionals</a
+                    >
                </div>
           </nav>
 
@@ -432,6 +529,459 @@ if (age >= 18) {
                               </div>
                          </div>
                     </div>
+               </div>
+          </div>
+
+          <!-- Navbar -->
+          <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+               <div class="container">
+                    <a class="navbar-brand" href="#">JS Arrays</a>
+               </div>
+          </nav>
+
+          <div class="container my-5">
+               <!-- Arrays Introduction -->
+               <h1 class="text-center mb-4">JavaScript Arrays</h1>
+               <p class="lead text-center">
+                    Arrays are used to store multiple values in a single
+                    variable. They are reference types in JavaScript.
+               </p>
+
+               <div class="card mb-4 shadow-sm">
+                    <div class="card-body">
+                         <h5 class="card-title">
+                              Declaring Arrays with <code>const</code>
+                         </h5>
+                         <p>
+                              We often use <code>const</code> for arrays because
+                              it prevents reassignment of the variable name, but
+                              we can still modify the contents.
+                         </p>
+                         <pre><code>const fruits = ["Apple", "Banana", "Cherry"];
+// You can modify the array:
+fruits.push("Orange");
+// But you cannot do this:
+fruits = ["New Array"]; // ❌ Error</code></pre>
+                    </div>
+               </div>
+
+               <!-- Common Methods -->
+               <h2 class="mb-4 text-center">Common Array Methods</h2>
+
+               <div class="row row-cols-1 row-cols-md-2 g-4 mb-5">
+                    <!-- push -->
+                    <div class="col">
+                         <div class="card shadow-sm">
+                              <div class="card-body">
+                                   <h5 class="card-title">push()</h5>
+                                   <p>
+                                        Adds an element to the end of an array.
+                                   </p>
+                                   <pre><code>const arr = [1, 2];
+arr.push(3); // [1, 2, 3]</code></pre>
+                              </div>
+                         </div>
+                    </div>
+
+                    <!-- pop -->
+                    <div class="col">
+                         <div class="card shadow-sm">
+                              <div class="card-body">
+                                   <h5 class="card-title">pop()</h5>
+                                   <p>
+                                        Removes the last element and returns it.
+                                   </p>
+                                   <pre><code>const arr = [1, 2, 3];
+arr.pop(); // [1, 2]</code></pre>
+                              </div>
+                         </div>
+                    </div>
+
+                    <!-- unshift -->
+                    <div class="col">
+                         <div class="card shadow-sm">
+                              <div class="card-body">
+                                   <h5 class="card-title">unshift()</h5>
+                                   <p>
+                                        Adds an element to the start of an
+                                        array.
+                                   </p>
+                                   <pre><code>const arr = [2, 3];
+arr.unshift(1); // [1, 2, 3]</code></pre>
+                              </div>
+                         </div>
+                    </div>
+
+                    <!-- shift -->
+                    <div class="col">
+                         <div class="card shadow-sm">
+                              <div class="card-body">
+                                   <h5 class="card-title">shift()</h5>
+                                   <p>
+                                        Removes the first element and returns
+                                        it.
+                                   </p>
+                                   <pre><code>const arr = [1, 2, 3];
+arr.shift(); // [2, 3]</code></pre>
+                              </div>
+                         </div>
+                    </div>
+
+                    <!-- concat -->
+                    <div class="col">
+                         <div class="card shadow-sm">
+                              <div class="card-body">
+                                   <h5 class="card-title">concat()</h5>
+                                   <p>
+                                        Merges two or more arrays into a new
+                                        array.
+                                   </p>
+                                   <pre><code>const a = [1, 2];
+const b = [3, 4];
+const c = a.concat(b); // [1, 2, 3, 4]</code></pre>
+                              </div>
+                         </div>
+                    </div>
+
+                    <!-- indexOf -->
+                    <div class="col">
+                         <div class="card shadow-sm">
+                              <div class="card-body">
+                                   <h5 class="card-title">indexOf()</h5>
+                                   <p>
+                                        Finds the index of a value, or returns
+                                        -1 if not found.
+                                   </p>
+                                   <pre><code>const arr = ["a","b","c"];
+arr.indexOf("b"); // 1</code></pre>
+                              </div>
+                         </div>
+                    </div>
+
+                    <!-- includes -->
+                    <div class="col">
+                         <div class="card shadow-sm">
+                              <div class="card-body">
+                                   <h5 class="card-title">includes()</h5>
+                                   <p>Checks if an array contains a value.</p>
+                                   <pre><code>const arr = ["x","y"];
+arr.includes("y"); // true</code></pre>
+                              </div>
+                         </div>
+                    </div>
+
+                    <!-- reverse -->
+                    <div class="col">
+                         <div class="card shadow-sm">
+                              <div class="card-body">
+                                   <h5 class="card-title">reverse()</h5>
+                                   <p>Reverses the array in place.</p>
+                                   <pre><code>const arr = [1, 2, 3];
+arr.reverse(); // [3, 2, 1]</code></pre>
+                              </div>
+                         </div>
+                    </div>
+
+                    <!-- slice -->
+                    <div class="col">
+                         <div class="card shadow-sm">
+                              <div class="card-body">
+                                   <h5 class="card-title">slice()</h5>
+                                   <p>
+                                        Returns a shallow copy of a portion of
+                                        the array.
+                                   </p>
+                                   <pre><code>const arr = [1, 2, 3, 4];
+arr.slice(1,3); // [2, 3]</code></pre>
+                              </div>
+                         </div>
+                    </div>
+
+                    <!-- splice -->
+                    <div class="col">
+                         <div class="card shadow-sm">
+                              <div class="card-body">
+                                   <h5 class="card-title">splice()</h5>
+                                   <p>
+                                        Adds/removes items from an array at a
+                                        specific index.
+                                   </p>
+                                   <pre><code>const arr = [1, 2, 4];
+arr.splice(2, 0, 3); // [1, 2, 3, 4]</code></pre>
+                              </div>
+                         </div>
+                    </div>
+               </div>
+
+               <!-- Multidimensional Arrays -->
+               <h2 class="mb-3 text-center">Multidimensional Arrays</h2>
+               <div class="card mb-4 shadow-sm">
+                    <div class="card-body">
+                         <p>
+                              An array of arrays can represent matrices or
+                              grids.
+                         </p>
+                         <pre><code>const matrix = [
+  [1, 2, 3],
+  [4, 5, 6],
+  [7, 8, 9]
+];
+console.log(matrix[1][2]); // 6</code></pre>
+                    </div>
+               </div>
+
+               <!-- Reference Types & Equality -->
+               <h2 class="mb-3 text-center">Reference Types & Equality</h2>
+               <div class="card mb-4 shadow-sm">
+                    <div class="card-body">
+                         <p>
+                              Arrays are reference types, meaning variables
+                              store a reference to the object, not the actual
+                              value.
+                         </p>
+                         <pre><code>const arr1 = [1, 2];
+const arr2 = [1, 2];
+console.log(arr1 === arr2); // false (different references)
+
+const arr3 = arr1;
+console.log(arr1 === arr3); // true (same reference)</code></pre>
+                         <p class="mt-2">
+                              Two separate arrays with the same values are not
+                              equal because they occupy different memory
+                              addresses.
+                         </p>
+                    </div>
+               </div>
+          </div>
+
+          <!-- Navbar -->
+          <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+               <div class="container">
+                    <a class="navbar-brand" href="#">JS Objects</a>
+               </div>
+          </nav>
+
+          <div class="container my-5">
+               <!-- Introduction -->
+               <h1 class="text-center mb-4">JavaScript Object Literals</h1>
+               <p class="lead text-center">
+                    An <strong>object literal</strong> in JavaScript is a way to
+                    define an object using curly braces <code>{}</code>. Objects
+                    store data in key-value pairs and can hold numbers, strings,
+                    arrays, functions, or other objects.
+               </p>
+
+               <!-- How to Create Object -->
+               <div class="card mb-4 shadow-sm">
+                    <div class="card-body">
+                         <h5 class="card-title">Creating an Object Literal</h5>
+                         <pre><code>const user = {
+  name: "Alice",
+  age: 25,
+  isAdmin: true
+};</code></pre>
+                    </div>
+               </div>
+
+               <!-- Accessing Data -->
+               <div class="card mb-4 shadow-sm">
+                    <div class="card-body">
+                         <h5 class="card-title">Accessing Object Data</h5>
+                         <p>
+                              You can use <strong>dot notation</strong> or
+                              <strong>bracket notation</strong>.
+                         </p>
+                         <pre><code>console.log(user.name);       // "Alice"
+console.log(user["age"]);     // 25</code></pre>
+                    </div>
+               </div>
+
+               <!-- Modifying Objects -->
+               <div class="card mb-4 shadow-sm">
+                    <div class="card-body">
+                         <h5 class="card-title">Modifying Objects</h5>
+                         <p>We can add, update, or delete properties:</p>
+                         <pre><code>user.age = 26;        // Update value
+user.email = "a@example.com"; // Add new property
+delete user.isAdmin;  // Remove property</code></pre>
+                    </div>
+               </div>
+
+               <!-- Big Example: Reddit-like Data Structure -->
+               <h2 class="text-center mb-4">
+                    Real-World Example: Nested Objects & Arrays
+               </h2>
+               <p class="text-center">
+                    Here’s a simplified data structure for a Reddit-like
+                    application:
+               </p>
+
+               <div class="card mb-4 shadow-sm">
+                    <div class="card-body">
+                         <pre><code>const redditData = {
+  community: "JavaScript",
+  posts: [
+    {
+      id: 101,
+      title: "Understanding Closures",
+      author: { username: "dev_guru", karma: 1200 },
+      comments: [
+        { user: "code_lover", text: "Great explanation!", upvotes: 15 },
+        { user: "js_fan", text: "Thanks for sharing!", upvotes: 10 }
+      ]
+    },
+    {
+      id: 102,
+      title: "ES2025 Features",
+      author: { username: "future_js", karma: 800 },
+      comments: [
+        { user: "alice", text: "Excited for this!", upvotes: 22 },
+        { user: "bob", text: "Can't wait to try them!", upvotes: 18 }
+      ]
+    }
+  ]
+};</code></pre>
+                    </div>
+               </div>
+
+               <!-- Extract Specific Info -->
+               <h3 class="mb-3">Extracting Specific Information</h3>
+               <p>
+                    Example: Get the text of the first comment on the first
+                    post:
+               </p>
+               <pre><code>const firstComment = redditData.posts[0].comments[0].text;
+console.log(firstComment); // "Great explanation!"</code></pre>
+
+               <p>
+                    Example: Get the username of the author of the second post:
+               </p>
+               <pre><code>const secondAuthor = redditData.posts[1].author.username;
+console.log(secondAuthor); // "future_js"</code></pre>
+          </div>
+
+          <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+               <div class="container">
+                    <a class="navbar-brand" href="#">JS Loops & Practice</a>
+               </div>
+          </nav>
+
+          <div class="container my-4">
+               <h1 class="text-center mb-4">JavaScript Loops</h1>
+               <p class="lead text-center">
+                    Learn loops, iteration, and apply them in real-world mini
+                    projects.
+               </p>
+
+               <!-- Basic Loops Explanation -->
+               <div class="card mb-4">
+                    <div class="card-body">
+                         <h4>1. Basic Loops</h4>
+                         <p><strong>For Loop:</strong></p>
+                         <pre><code>for (let i = 0; i < 5; i++) {
+  console.log(i);
+}</code></pre>
+
+                         <p><strong>While Loop:</strong></p>
+                         <pre><code>let count = 0;
+while (count < 5) {
+  console.log(count);
+  count++;
+}</code></pre>
+
+                         <p><strong>Nested Loops Example:</strong></p>
+                         <pre><code>for (let i = 1; i <= 3; i++) {
+  for (let j = 1; j <= 2; j++) {
+    console.log(`i=${i}, j=${j}`);
+  }
+}</code></pre>
+
+                         <p>
+                              <strong>Infinite Loop:</strong> Be careful!
+                              Example:
+                         </p>
+                         <pre><code>// while(true) { console.log("Endless"); }</code></pre>
+                    </div>
+               </div>
+
+               <!-- Break & Continue -->
+               <div class="card mb-4">
+                    <div class="card-body">
+                         <h4>2. Break & Continue</h4>
+                         <p>
+                              <strong>break</strong> exits the loop,
+                              <strong>continue</strong> skips current iteration.
+                         </p>
+                         <pre><code>for (let i = 0; i < 5; i++) {
+  if (i === 3) break;   // stop when i = 3
+  if (i === 1) continue; // skip 1
+  console.log(i);
+}</code></pre>
+                    </div>
+               </div>
+
+               <!-- Iterating Arrays & Objects -->
+               <div class="card mb-4">
+                    <div class="card-body">
+                         <h4>3. Iterating Arrays & Objects</h4>
+                         <pre><code>// For arrays
+const arr = ["a","b","c"];
+for (let item of arr) console.log(item);
+
+// For objects
+const obj = {name:"Alice", age:25};
+for (let key in obj) console.log(key, obj[key]);</code></pre>
+                         <p>
+                              <strong>Note:</strong> Use
+                              <code>for...of</code> for arrays,
+                              <code>for...in</code> for object keys.
+                         </p>
+                    </div>
+               </div>
+
+               <!-- forEach -->
+               <div class="card mb-4">
+                    <div class="card-body">
+                         <h4>4. forEach Loop</h4>
+                         <pre><code>const nums = [1,2,3];
+nums.forEach(num => console.log(num * 2));
+// Difference: cannot break or continue easily</code></pre>
+                    </div>
+               </div>
+          </div>
+
+          <!-- Guessing Game -->
+          <div class="game-card">
+               <h3 class="text-center mb-3">🎯 Guessing Game</h3>
+               <p>Guess the number between 1 and 10. You have 3 attempts.</p>
+               <div class="btn-group-custom mb-3">
+                    <button
+                         class="btn btn-primary"
+                         onclick="startGuessingGame()"
+                    >
+                         Start Game
+                    </button>
+               </div>
+               <div class="output" id="gameOutput">
+                    Game output will appear here...
+               </div>
+          </div>
+
+          <!-- To-Do List -->
+          <div class="todo-card">
+               <h3 class="text-center mb-3">✅ To-Do List</h3>
+               <p>
+                    Manage your tasks with commands: <code>add</code>,
+                    <code>delete</code>, <code>replace</code>,
+                    <code>list</code>, <code>quit</code>.
+               </p>
+               <div class="btn-group-custom mb-3">
+                    <button class="btn btn-success" onclick="startTodo()">
+                         Start To-Do App
+                    </button>
+               </div>
+               <div class="output" id="todoOutput">
+                    Your to-do list will be shown here...
                </div>
           </div>
 
