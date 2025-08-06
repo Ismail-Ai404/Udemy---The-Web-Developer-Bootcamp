@@ -1,0 +1,441 @@
+<!-- @format -->
+
+<!DOCTYPE html>
+<html lang="en">
+     <head>
+          <meta charset="UTF-8" />
+          <meta
+               name="viewport"
+               content="width=device-width, initial-scale=1.0"
+          />
+          <title>All of JavaScript</title>
+          <!-- Google Font -->
+          <link
+               href="https://fonts.googleapis.com/css?family=Nunito:200,300,400,700"
+               rel="stylesheet"
+          />
+
+          <!-- Bootstrap CSS -->
+          <link
+               rel="stylesheet"
+               href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+               integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+               crossorigin="anonymous"
+          />
+
+          <!-- Custom CSS -->
+          <link rel="stylesheet" href="app.css" />
+     </head>
+     <body>
+          <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+               <div class="container">
+                    <a class="navbar-brand" href="#">JS Basics</a>
+               </div>
+          </nav>
+
+          <div class="container my-5">
+               <h1 class="text-center mb-4">JavaScript Primitive Types</h1>
+               <p class="lead text-center">
+                    JavaScript has <strong>7 primitive data types</strong>.
+                    These are immutable and represent single values.
+               </p>
+
+               <div class="row row-cols-1 row-cols-md-2 g-4 mt-4">
+                    <!-- String -->
+                    <div class="col">
+                         <div class="card h-100 shadow-sm">
+                              <div class="card-body">
+                                   <h5 class="card-title">1. String</h5>
+                                   <p class="card-text">
+                                        Represents text. Strings are enclosed in
+                                        single quotes (<code>' '</code>), double
+                                        quotes (<code>" "</code>), or backticks
+                                        (<code>` `</code>).
+                                   </p>
+                                   <pre><code>let name = "Alice";</code></pre>
+                              </div>
+                         </div>
+                    </div>
+
+                    <!-- Number -->
+                    <div class="col">
+                         <div class="card h-100 shadow-sm">
+                              <div class="card-body">
+                                   <h5 class="card-title">2. Number</h5>
+                                   <p class="card-text">
+                                        Represents both integer and
+                                        floating-point numbers.
+                                   </p>
+                                   <pre><code>let age = 25;
+let price = 99.99;</code></pre>
+                              </div>
+                         </div>
+                    </div>
+
+                    <!-- BigInt -->
+                    <div class="col">
+                         <div class="card h-100 shadow-sm">
+                              <div class="card-body">
+                                   <h5 class="card-title">3. BigInt</h5>
+                                   <p class="card-text">
+                                        Used for very large integers beyond
+                                        <code>Number</code> limits. Created by
+                                        adding <code>n</code> to the end.
+                                   </p>
+                                   <pre><code>let big = 12345678901234567890n;</code></pre>
+                              </div>
+                         </div>
+                    </div>
+
+                    <!-- Boolean -->
+                    <div class="col">
+                         <div class="card h-100 shadow-sm">
+                              <div class="card-body">
+                                   <h5 class="card-title">4. Boolean</h5>
+                                   <p class="card-text">
+                                        Represents logical values:
+                                        <code>true</code> or <code>false</code>.
+                                   </p>
+                                   <pre><code>let isActive = true;</code></pre>
+                              </div>
+                         </div>
+                    </div>
+
+                    <!-- Undefined -->
+                    <div class="col">
+                         <div class="card h-100 shadow-sm">
+                              <div class="card-body">
+                                   <h5 class="card-title">5. Undefined</h5>
+                                   <p class="card-text">
+                                        A variable declared but not assigned any
+                                        value has the value
+                                        <code>undefined</code>.
+                                   </p>
+                                   <pre><code>let x;
+console.log(x); // undefined</code></pre>
+                              </div>
+                         </div>
+                    </div>
+
+                    <!-- Null -->
+                    <div class="col">
+                         <div class="card h-100 shadow-sm">
+                              <div class="card-body">
+                                   <h5 class="card-title">6. Null</h5>
+                                   <p class="card-text">
+                                        Represents an intentional absence of any
+                                        value. It is an object type in
+                                        JavaScript (historical quirk).
+                                   </p>
+                                   <pre><code>let y = null;</code></pre>
+                              </div>
+                         </div>
+                    </div>
+
+                    <!-- Symbol -->
+                    <div class="col">
+                         <div class="card h-100 shadow-sm">
+                              <div class="card-body">
+                                   <h5 class="card-title">7. Symbol</h5>
+                                   <p class="card-text">
+                                        Introduced in ES6. Used to create unique
+                                        identifiers for object properties.
+                                   </p>
+                                   <pre><code>let id = Symbol('id');</code></pre>
+                              </div>
+                         </div>
+                    </div>
+               </div>
+          </div>
+
+          <!-- String Methods Section -->
+          <div class="container my-5">
+               <h2 class="text-center mb-4">
+                    Common JavaScript String Methods
+               </h2>
+               <p class="lead text-center">
+                    Strings come with powerful built-in methods for manipulation
+                    and querying.
+               </p>
+
+               <div class="row row-cols-1 row-cols-md-2 g-4 mt-4">
+                    <!-- length -->
+                    <div class="col">
+                         <div class="card shadow-sm">
+                              <div class="card-body">
+                                   <h5 class="card-title">length</h5>
+                                   <p class="card-text">
+                                        Returns the length of the string.
+                                   </p>
+                                   <pre><code>let str = "Hello";
+console.log(str.length); // 5</code></pre>
+                              </div>
+                         </div>
+                    </div>
+                    <!-- toUpperCase & toLowerCase -->
+                    <div class="col">
+                         <div class="card shadow-sm">
+                              <div class="card-body">
+                                   <h5 class="card-title">
+                                        toUpperCase() & toLowerCase()
+                                   </h5>
+                                   <p class="card-text">
+                                        Convert a string to uppercase or
+                                        lowercase.
+                                   </p>
+                                   <pre><code>"hello".toUpperCase(); // "HELLO"
+"HELLO".toLowerCase(); // "hello"</code></pre>
+                              </div>
+                         </div>
+                    </div>
+                    <!-- trim -->
+                    <div class="col">
+                         <div class="card shadow-sm">
+                              <div class="card-body">
+                                   <h5 class="card-title">trim()</h5>
+                                   <p class="card-text">
+                                        Removes whitespace from both ends of a
+                                        string.
+                                   </p>
+                                   <pre><code>"  hi  ".trim(); // "hi"</code></pre>
+                              </div>
+                         </div>
+                    </div>
+                    <!-- slice -->
+                    <div class="col">
+                         <div class="card shadow-sm">
+                              <div class="card-body">
+                                   <h5 class="card-title">slice(start, end)</h5>
+                                   <p class="card-text">
+                                        Extracts a part of the string.
+                                   </p>
+                                   <pre><code>"JavaScript".slice(0,4); // "Java"</code></pre>
+                              </div>
+                         </div>
+                    </div>
+                    <!-- substring -->
+                    <div class="col">
+                         <div class="card shadow-sm">
+                              <div class="card-body">
+                                   <h5 class="card-title">
+                                        substring(start, end)
+                                   </h5>
+                                   <p class="card-text">
+                                        Similar to <code>slice()</code> but
+                                        doesn't accept negative indexes.
+                                   </p>
+                                   <pre><code>"Hello".substring(1,4); // "ell"</code></pre>
+                              </div>
+                         </div>
+                    </div>
+                    <!-- replace -->
+                    <div class="col">
+                         <div class="card shadow-sm">
+                              <div class="card-body">
+                                   <h5 class="card-title">replace()</h5>
+                                   <p class="card-text">
+                                        Replaces the first match with a new
+                                        string.
+                                   </p>
+                                   <pre><code>"I love cats".replace("cats", "dogs");
+// "I love dogs"</code></pre>
+                              </div>
+                         </div>
+                    </div>
+                    <!-- includes -->
+                    <div class="col">
+                         <div class="card shadow-sm">
+                              <div class="card-body">
+                                   <h5 class="card-title">includes()</h5>
+                                   <p class="card-text">
+                                        Checks if a substring exists.
+                                   </p>
+                                   <pre><code>"Hello world".includes("world"); // true</code></pre>
+                              </div>
+                         </div>
+                    </div>
+                    <!-- split -->
+                    <div class="col">
+                         <div class="card shadow-sm">
+                              <div class="card-body">
+                                   <h5 class="card-title">split()</h5>
+                                   <p class="card-text">
+                                        Splits a string into an array based on a
+                                        delimiter.
+                                   </p>
+                                   <pre><code>"a,b,c".split(","); // ["a","b","c"]</code></pre>
+                              </div>
+                         </div>
+                    </div>
+               </div>
+          </div>
+
+          <!-- Navbar -->
+          <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+               <div class="container">
+                    <a class="navbar-brand" href="#">JS Conditionals</a>
+               </div>
+          </nav>
+
+          <div class="container my-5">
+               <!-- Booleans Section -->
+               <h1 class="text-center mb-4">
+                    JavaScript Booleans & Truthy/Falsy Values
+               </h1>
+               <p class="lead text-center">
+                    Booleans represent logical values: <code>true</code> or
+                    <code>false</code>. Some values are inherently
+                    <strong>truthy</strong> and others are
+                    <strong>falsy</strong>.
+               </p>
+
+               <div class="card mb-4 shadow-sm">
+                    <div class="card-body">
+                         <h5 class="card-title">Boolean Basics</h5>
+                         <pre><code>let isActive = true;
+let isComplete = false;</code></pre>
+                    </div>
+               </div>
+
+               <h4 class="mb-3">Falsy Values in JavaScript:</h4>
+               <ul class="list-group mb-4">
+                    <li class="list-group-item"><code>false</code></li>
+                    <li class="list-group-item">
+                         <code>0</code> and <code>-0</code>
+                    </li>
+                    <li class="list-group-item">
+                         <code>""</code> (empty string)
+                    </li>
+                    <li class="list-group-item"><code>null</code></li>
+                    <li class="list-group-item"><code>undefined</code></li>
+                    <li class="list-group-item"><code>NaN</code></li>
+               </ul>
+
+               <p class="mb-4">
+                    <strong>Everything else is truthy</strong> (e.g., non-empty
+                    strings, numbers other than zero, objects, arrays).
+               </p>
+
+               <!-- Conditional Statements Section -->
+               <h1 class="text-center mb-4">
+                    Conditional Statements in JavaScript
+               </h1>
+               <p class="lead text-center">
+                    Conditionals let you execute different blocks of code based
+                    on conditions.
+               </p>
+
+               <div class="row row-cols-1 row-cols-md-2 g-4 mt-4">
+                    <!-- if statement -->
+                    <div class="col">
+                         <div class="card shadow-sm">
+                              <div class="card-body">
+                                   <h5 class="card-title">if Statement</h5>
+                                   <p class="card-text">
+                                        Executes a block of code if the
+                                        condition is true.
+                                   </p>
+                                   <pre><code>let age = 18;
+if (age >= 18) {
+  console.log("You are an adult.");
+}</code></pre>
+                              </div>
+                         </div>
+                    </div>
+
+                    <!-- if-else statement -->
+                    <div class="col">
+                         <div class="card shadow-sm">
+                              <div class="card-body">
+                                   <h5 class="card-title">
+                                        if...else Statement
+                                   </h5>
+                                   <p class="card-text">
+                                        Adds an alternative block if the
+                                        condition is false.
+                                   </p>
+                                   <pre><code>let age = 16;
+if (age >= 18) {
+  console.log("Adult");
+} else {
+  console.log("Minor");
+}</code></pre>
+                              </div>
+                         </div>
+                    </div>
+
+                    <!-- else if -->
+                    <div class="col">
+                         <div class="card shadow-sm">
+                              <div class="card-body">
+                                   <h5 class="card-title">else if Statement</h5>
+                                   <p class="card-text">
+                                        Check multiple conditions in sequence.
+                                   </p>
+                                   <pre><code>let score = 85;
+if (score >= 90) {
+  console.log("Grade A");
+} else if (score >= 75) {
+  console.log("Grade B");
+} else {
+  console.log("Grade C");
+}</code></pre>
+                              </div>
+                         </div>
+                    </div>
+
+                    <!-- switch case -->
+                    <div class="col">
+                         <div class="card shadow-sm">
+                              <div class="card-body">
+                                   <h5 class="card-title">switch Statement</h5>
+                                   <p class="card-text">
+                                        Selects a block to execute based on a
+                                        matching case.
+                                   </p>
+                                   <pre><code>let day = "Monday";
+switch(day) {
+  case "Monday":
+    console.log("Start of the week");
+    break;
+  case "Friday":
+    console.log("Weekend coming");
+    break;
+  default:
+    console.log("Midweek");
+}</code></pre>
+                              </div>
+                         </div>
+                    </div>
+
+                    <!-- Nested Conditions -->
+                    <div class="col">
+                         <div class="card shadow-sm">
+                              <div class="card-body">
+                                   <h5 class="card-title">Nested Conditions</h5>
+                                   <p class="card-text">
+                                        You can put an <code>if</code> inside
+                                        another <code>if</code>.
+                                   </p>
+                                   <pre><code>let age = 20;
+let hasID = true;
+
+if (age >= 18) {
+  if (hasID) {
+    console.log("You can enter.");
+  } else {
+    console.log("ID required.");
+  }
+} else {
+  console.log("Underage.");
+}</code></pre>
+                              </div>
+                         </div>
+                    </div>
+               </div>
+          </div>
+
+          <script src="all.js"></script>
+          <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+     </body>
+</html>
