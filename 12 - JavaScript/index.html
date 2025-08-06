@@ -342,28 +342,24 @@ console.log(0 != false); // false (because 0 is coerced to false)</code></pre>
                </div>
 
                <!-- Key Differences -->
-               <h2 class="mb-3 text-center">
-                    Key Differences Between Strict and Loose Equality
-               </h2>
-               <div class="card mb-4 shadow-sm">
-                    <div class="card-body">
-                         <ul class="list-group list-group-flush">
-                              <li class="list-group-item">
-                                   <strong>=== / !==</strong>: No type
-                                   conversion; compares type and value (strict).
-                              </li>
-                              <li class="list-group-item">
-                                   <strong>== / !=</strong>: Performs type
-                                   coercion; only compares value (loose).
-                              </li>
-                         </ul>
-                         <pre
-                              class="mt-3"
-                         ><code>console.log(0 == false);  // true (coerced)
+               <h2 class="mb-3 text-center text-primary">
+    Key Differences Between Strict and Loose Equality
+</h2>
+<div class="card mb-4 shadow-sm">
+    <div class="card-body">
+        <ul class="custom-list">
+            <li>
+                <strong>=== / !==</strong>: No type conversion; compares type and value (strict).
+            </li>
+            <li>
+                <strong>== / !=</strong>: Performs type coercion; only compares value (loose).
+            </li>
+        </ul>
+        <pre class="mt-3"><code>console.log(0 == false);  // true (coerced)
 console.log(0 === false); // false (different types)</code></pre>
-                    </div>
-               </div>
-          </div>
+    </div>
+</div>
+
 
           <!-- Navbar -->
           <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -394,19 +390,16 @@ let isComplete = false;</code></pre>
                     </div>
                </div>
 
-               <h4 class="mb-3">Falsy Values in JavaScript:</h4>
-               <ul class="list-group mb-4">
-                    <li class="list-group-item"><code>false</code></li>
-                    <li class="list-group-item">
-                         <code>0</code> and <code>-0</code>
-                    </li>
-                    <li class="list-group-item">
-                         <code>""</code> (empty string)
-                    </li>
-                    <li class="list-group-item"><code>null</code></li>
-                    <li class="list-group-item"><code>undefined</code></li>
-                    <li class="list-group-item"><code>NaN</code></li>
-               </ul>
+              <h4 class="mb-3 text-primary">Falsy Values in JavaScript:</h4>
+<ul class="custom-list">
+    <li><code>false</code></li>
+    <li><code>0 && -0</code></li>
+    <li><code>""</code> (empty string)</li>
+    <li><code>null</code></li>
+    <li><code>undefined</code></li>
+    <li><code>NaN</code></li>
+</ul>
+
 
                <p class="mb-4">
                     <strong>Everything else is truthy</strong> (e.g., non-empty
@@ -983,6 +976,410 @@ nums.forEach(num => console.log(num * 2));
                <div class="output" id="todoOutput">
                     Your to-do list will be shown here...
                </div>
+          </div>
+
+          <!-- Navbar -->
+          <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+               <div class="container">
+                    <a class="navbar-brand" href="#">JS Functions</a>
+               </div>
+          </nav>
+
+          <div class="container py-5">
+               <!-- 1. Function Basics -->
+               <section class="mb-5">
+                    <h2 class="mb-3">1. Function Declaration & Basics</h2>
+                    <div class="card shadow-sm">
+                         <div class="card-body">
+                              <pre><code>// Declaration
+function greet(name) {
+  console.log("Hello, " + name);
+}
+
+// Invocation
+greet("Alice"); // "Hello, Alice"</code></pre>
+                         </div>
+                    </div>
+               </section>
+
+               <!-- 2. Arguments vs Parameters -->
+               <section class="mb-5">
+                    <h2 class="mb-3">2. Parameters vs. Arguments</h2>
+                    <div class="card shadow-sm">
+                         <div class="card-body">
+                              <pre><code>function add(a, b) {   // a, b are parameters
+  return a + b;
+}
+
+add(2, 3);             // 2, 3 are arguments → returns 5</code></pre>
+                         </div>
+                    </div>
+               </section>
+
+               <!-- 3. typeof & Optional Parameters -->
+               <section class="mb-5">
+                    <h2 class="mb-3">3. typeof & Optional Parameters</h2>
+                    <div class="card shadow-sm">
+                         <div class="card-body">
+                              <pre><code>function multiply(a, b = 1) {  // b is optional, defaults to 1
+  if (typeof a !== "number" || typeof b !== "number") {
+    throw new TypeError("Arguments must be numbers");
+  }
+  return a * b;
+}
+
+// Usage
+multiply(5);        // 5 * 1 = 5
+multiply(4, 2);     // 8
+// multiply("4", 2); // throws TypeError</code></pre>
+                         </div>
+                    </div>
+               </section>
+
+               <!-- 4. Return Values -->
+               <section class="mb-5">
+                    <h2 class="mb-3">4. Return Values</h2>
+                    <div class="card shadow-sm">
+                         <div class="card-body">
+                              <pre><code>function max(a, b) {
+  return a > b ? a : b;
+}
+
+let highest = max(7, 10);  // highest = 10
+console.log(highest);</code></pre>
+                         </div>
+                    </div>
+               </section>
+
+               <!-- 5. Function vs. Method -->
+               <section class="mb-5">
+                    <h2 class="mb-3">5. Function vs. Method</h2>
+                    <div class="card shadow-sm">
+                         <div class="card-body">
+                              <pre><code>// Function (standalone)
+function sayHi() {
+  console.log("Hi!");
+}
+
+// Method (inside an object)
+const user = {
+  name: "Bob",
+  sayHi: function() {
+    console.log("Hi, I'm " + this.name);
+  }
+};
+
+sayHi();            // "Hi!"
+user.sayHi();       // "Hi, I'm Bob"</code></pre>
+                         </div>
+                    </div>
+               </section>
+
+               <!-- 6. Scopes -->
+               <section class="mb-5">
+                    <h2 class="mb-3">6. Scope: Function, Block & Lexical</h2>
+                    <div class="card shadow-sm">
+                         <div class="card-body">
+                              <pre><code>// Function scope
+function fnScope() {
+  var x = 1;    // visible throughout fnScope
+}
+
+// Block scope
+if (true) {
+  let y = 2;    // visible only inside this block
+}
+
+// Lexical scope (closure)
+function outer() {
+  let z = 3;
+  function inner() {
+    console.log(z); // inner can access z via lexical scope
+  }
+  inner();
+}
+outer();</code></pre>
+                         </div>
+                    </div>
+               </section>
+
+               <!-- 7. Expressions & Higher-Order -->
+               <section class="mb-5">
+                    <h2 class="mb-3">7. Function Expressions & Higher-Order</h2>
+                    <div class="card shadow-sm">
+                         <div class="card-body">
+                              <pre><code>// Expression
+const square = function(n) {
+  return n * n;
+};
+
+// Higher-order (takes function)
+function map(arr, fn) {
+  const result = [];
+  for (let item of arr) {
+    result.push(fn(item));
+  }
+  return result;
+}
+
+console.log(map([1,2,3], square)); // [1,4,9]</code></pre>
+                         </div>
+                    </div>
+               </section>
+
+               <!-- 8. Returning Functions & this -->
+               <section class="mb-5">
+                    <h2 class="mb-3">
+                         8. Returning Functions & <code>this</code>
+                    </h2>
+                    <div class="card shadow-sm">
+                         <div class="card-body">
+                              <pre><code>// Returning a function (closure)
+function makeAdder(x) {
+  return function(y) {
+    return x + y;
+  };
+}
+const add5 = makeAdder(5);
+console.log(add5(3)); // 8
+
+// 'this' in global context (default)
+function globalThis() {
+  console.log(this);  // window (or undefined in strict mode)
+}
+globalThis();
+
+// 'this' in object method
+const obj = {
+  val: 42,
+  show: function() {
+    console.log(this.val); // 42
+  }
+};
+obj.show();</code></pre>
+                         </div>
+                    </div>
+               </section>
+
+               <!-- 9. try...catch -->
+               <section class="mb-5">
+                    <h2 class="mb-3">9. Error Handling: try…catch</h2>
+                    <div class="card shadow-sm">
+                         <div class="card-body">
+                              <pre><code>try {
+  // may throw
+  JSON.parse("invalid json");
+} catch (err) {
+  console.error("Parsing failed:", err.message);
+} finally {
+  console.log("Cleanup if needed");
+}</code></pre>
+                         </div>
+                    </div>
+               </section>
+          </div>
+
+          <!-- Navbar -->
+          <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+               <div class="container">
+                    <a class="navbar-brand" href="#"
+                         >Advanced JS Functions & Array Methods</a
+                    >
+               </div>
+          </nav>
+
+          <div class="container py-5">
+               <!-- 1. Different Ways to Write Functions -->
+               <section class="mb-5">
+                    <h2 class="mb-3">
+                         1. Different Ways to Write the Same Function
+                    </h2>
+                    <div class="card shadow-sm">
+                         <div class="card-body">
+                              <p>
+                                   <strong>Example Task:</strong> Return the
+                                   square of a number.
+                              </p>
+                              <pre><code>// Normal function
+function square(x) {
+  return x * x;
+}
+
+// Function Expression
+const squareExpr = function(x) {
+  return x * x;
+};
+
+// Arrow Function (explicit return)
+const squareArrow = (x) => {
+  return x * x;
+};
+
+// Arrow Function (implicit return, single line)
+const squareImplicit = x => x * x;
+
+console.log(square(4));        // 16
+console.log(squareExpr(4));    // 16
+console.log(squareArrow(4));   // 16
+console.log(squareImplicit(4));// 16</code></pre>
+                         </div>
+                    </div>
+               </section>
+
+               <!-- 2. Arrow Function Callback Examples -->
+               <section class="mb-5">
+                    <h2 class="mb-3">
+                         2. Callback Example with Arrow Functions
+                    </h2>
+                    <div class="card shadow-sm">
+                         <div class="card-body">
+                              <pre><code>const nums = [1, 2, 3, 4];
+
+// Using normal function
+const doubled1 = nums.map(function(num) {
+  return num * 2;
+});
+
+// Using arrow with explicit return
+const doubled2 = nums.map((num) => {
+  return num * 2;
+});
+
+// Using arrow with implicit return
+const doubled3 = nums.map(num => num * 2);
+
+console.log(doubled1, doubled2, doubled3);</code></pre>
+                         </div>
+                    </div>
+               </section>
+
+               <!-- 3. this in Arrow vs Normal Function -->
+               <section class="mb-5">
+                    <h2 class="mb-3">
+                         3. <code>this</code> in Arrow Functions vs Normal
+                         Functions
+                    </h2>
+                    <div class="card shadow-sm">
+                         <div class="card-body">
+                              <p>
+                                   <strong>Normal function:</strong>
+                                   <code>this</code> depends on how function is
+                                   called.
+                              </p>
+                              <p>
+                                   <strong>Arrow function:</strong> Does NOT
+                                   have its own <code>this</code>; it uses
+                                   <code>this</code> from the surrounding
+                                   lexical scope.
+                              </p>
+                              <pre><code>const obj = {
+  name: "Alice",
+  normalFn: function() {
+    console.log("Normal:", this.name);
+  },
+  arrowFn: () => {
+    console.log("Arrow:", this.name);
+  }
+};
+
+obj.normalFn(); // "Normal: Alice"
+obj.arrowFn();  // "Arrow: undefined" (or window in non-strict)</code></pre>
+                              <p>
+                                   <strong>Use case:</strong> Arrow functions
+                                   are great for callbacks inside methods to
+                                   avoid manually binding <code>this</code>.
+                              </p>
+                         </div>
+                    </div>
+               </section>
+
+               <!-- 4. Array Methods: map, filter, some, every -->
+               <section class="mb-5">
+                    <h2 class="mb-3">
+                         4. Array Methods: map, filter, some, every
+                    </h2>
+                    <div class="card shadow-sm">
+                         <div class="card-body">
+                              <pre><code>const numbers = [1, 2, 3, 4, 5];
+
+// map: transforms array
+const squares = numbers.map(n => n * n);
+// [1, 4, 9, 16, 25]
+
+// filter: returns elements that pass condition
+const evens = numbers.filter(n => n % 2 === 0);
+// [2, 4]
+
+// some: checks if ANY element meets condition
+const hasEven = numbers.some(n => n % 2 === 0);
+// true
+
+// every: checks if ALL elements meet condition
+const allPositive = numbers.every(n => n > 0);
+// true
+
+console.log(squares, evens, hasEven, allPositive);</code></pre>
+                         </div>
+                    </div>
+               </section>
+
+               <!-- 5. The Notorious reduce -->
+               <section class="mb-5">
+                    <h2 class="mb-3">
+                         5. The Notorious <code>reduce()</code> Method (Deep
+                         Dive)
+                    </h2>
+                    <div class="card shadow-sm">
+                         <div class="card-body">
+                              <p>
+                                   <code>reduce()</code> executes a reducer
+                                   function on each array element, resulting in
+                                   a single output value. It takes two
+                                   arguments:
+                              </p>
+                              <ul>
+                                   <li>
+                                        <strong>Accumulator:</strong> Stores the
+                                        accumulated result.
+                                   </li>
+                                   <li>
+                                        <strong>Current value:</strong> Current
+                                        element being processed.
+                                   </li>
+                              </ul>
+                              <pre><code>const nums = [1, 2, 3, 4, 5];
+
+// Sum of numbers
+const sum = nums.reduce((acc, curr) => acc + curr, 0);
+// acc starts at 0 → result: 15
+
+// Find max
+const max = nums.reduce((acc, curr) => curr > acc ? curr : acc);
+// result: 5
+
+// Flatten nested arrays
+const nested = [[1,2], [3,4], [5]];
+const flat = nested.reduce((acc, curr) => acc.concat(curr), []);
+// [1,2,3,4,5]
+
+// Count occurrences
+const fruits = ["apple","banana","apple","orange","banana"];
+const count = fruits.reduce((acc, fruit) => {
+  acc[fruit] = (acc[fruit] || 0) + 1;
+  return acc;
+}, {});
+// { apple: 2, banana: 2, orange: 1 }
+
+console.log(sum, max, flat, count);</code></pre>
+                              <p>
+                                   <strong>When to use reduce:</strong> Whenever
+                                   you want to take an array and boil it down to
+                                   a single value (sum, average, object, array
+                                   flattening, etc.).
+                              </p>
+                         </div>
+                    </div>
+               </section>
           </div>
 
           <!-- <script src="all.js"></script> -->

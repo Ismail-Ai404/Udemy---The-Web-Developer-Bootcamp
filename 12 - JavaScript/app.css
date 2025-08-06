@@ -1,21 +1,138 @@
- body {
-      background-color: #f8f9fa;
-    }
-    .game-card, .todo-card {
-      max-width: 600px;
-      margin: 30px auto;
-      padding: 20px;
-      border-radius: 10px;
-      background: #ffffff;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    }
-    .output {
-      background: #f1f1f1;
-      padding: 15px;
-      border-radius: 6px;
-      min-height: 50px;
-      font-family: monospace;
-    }
-    .btn-group-custom button {
-      margin-right: 10px;
-    }
+/* Global Dark Theme */
+body {
+  background-color: #121212;
+  color: #eaeaea;
+  font-family: 'Segoe UI', Tahoma, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+/* Navbar */
+.navbar {
+  background-color: #1f1f1f;
+  border-bottom: 2px solid #0d6efd;
+}
+.navbar-brand {
+  color: #f7f9fc !important;
+  font-weight: bold;
+  
+}
+
+/* Container */
+.container {
+  max-width: 900px;
+}
+
+/* Card Styling */
+.card, .game-card, .todo-card {
+  background: #1e1e1e;
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.5);
+  margin-bottom: 25px;
+  color: #eaeaea;
+}
+
+/* Card Body */
+.card-body {
+  padding: 1.5rem;
+  
+}
+
+/* Section Titles */
+h2, h3, h4, h5 {
+  font-weight: 600;
+  color: #0d6efd;
+}
+
+/* Code Blocks */
+pre {
+  background: #0d1117; /* Dark blue tone background */
+  color: #c9d1d9;      /* Light gray text */
+  padding: 16px;
+  border-radius: 8px;
+  overflow-x: auto;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  font-family: 'Fira Code', monospace;
+  border: 1px solid #30363d;
+  margin-top: 10px;
+}
+
+/* Syntax Highlighting Colors */
+pre code span.keyword {
+  color: #79c0ff; /* Blue for keywords */
+}
+
+pre code span.string {
+  color: #a5d6ff; /* Light blue for strings */
+}
+
+pre code span.number {
+  color: #f2cc60; /* Yellow for numbers */
+}
+
+pre code span.comment {
+  color: #8b949e; /* Gray for comments */
+  font-style: italic;
+}
+
+/* Buttons */
+.btn {
+  border-radius: 6px;
+  font-weight: 500;
+}
+.btn-primary {
+  background-color: #0d6efd;
+  border: none;
+}
+.btn-success {
+  background-color: #198754;
+  border: none;
+}
+
+/* Output boxes */
+.output {
+  background: #161b22;
+  color: #eaeaea;
+  padding: 15px;
+  border-radius: 6px;
+  min-height: 50px;
+  font-family: 'Fira Code', monospace;
+  border: 1px solid #30363d;
+}
+
+/* Game and To-Do containers */
+.game-card, .todo-card {
+  max-width: 600px;
+  margin: 30px auto;
+  padding: 20px;
+}
+
+/* Button group spacing */
+.btn-group-custom button {
+  margin-right: 10px;
+}
+/* Styled Lists */
+ul {
+  list-style: none; /* Remove default bullets */
+  padding-left: 0;
+  margin: 10px 0;
+}
+ul li {
+  background: #161b22;
+  margin: 6px 0;
+  padding: 10px 14px;
+  border-radius: 6px;
+  border: 1px solid #30363d;
+  font-size: 0.95rem;
+  display: flex;
+  align-items: center;
+}
+ul li::before {
+  content: "✔";
+  color: #0d6efd;
+  margin-right: 10px;
+  font-size: 1.1rem;
+}
+
