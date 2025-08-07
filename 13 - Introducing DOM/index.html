@@ -1,0 +1,756 @@
+<!-- @format -->
+
+<!DOCTYPE html>
+<html lang="en">
+     <head>
+          <meta charset="UTF-8" />
+          <meta
+               name="viewport"
+               content="width=device-width, initial-scale=1.0"
+          />
+          <title>DOM</title>
+
+          <!-- Google Fonts -->
+          <link
+               href="https://fonts.googleapis.com/css2?family=Fira+Code&family=Inter:wght@400;600;700&display=swap"
+               rel="stylesheet"
+          />
+
+          <!-- Bootstrap CSS -->
+          <link
+               rel="stylesheet"
+               href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+               integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+               crossorigin="anonymous"
+          />
+
+          <link rel="stylesheet" href="app.css" />
+     </head>
+     <body class="bg-dark text-light">
+          <header class="text-center">
+               <div class="container">
+                    <h2 class="text-warning">
+                         Understanding the DOM in JavaScript
+                    </h2>
+                    <p class="text-note">
+                         How your browser sees and allows you to control the
+                         webpage through JavaScript objects
+                    </p>
+               </div>
+          </header>
+
+          <main class="container py-5">
+               <section class="mb-5">
+                    <h2 class="text-warning">🌐 What is the DOM?</h2>
+                    <p>
+                         The
+                         <span class="highlight">Document Object Model</span>
+                         (DOM) is a browser-provided interface that represents
+                         your HTML page as a structured
+                         <span class="highlight"
+                              >tree of JavaScript objects</span
+                         >. Every element—tags, text, attributes—is accessible
+                         and modifiable using JavaScript.
+                    </p>
+               </section>
+
+               <section class="mb-5">
+                    <h2 class="text-warning">📄 Everything is an Object</h2>
+                    <p>
+                         When you load a webpage, the browser parses your HTML
+                         and turns it into a live object structure in memory.
+                         You can inspect this using the developer tools console.
+                    </p>
+
+                    <p>Try running this command:</p>
+                    <pre><code>console.dir(document);</code></pre>
+
+                    <p>
+                         This command prints the entire
+                         <code>document</code> object with its properties and
+                         methods. You’ll find:
+                    </p>
+                    <ul>
+                         <li>
+                              <code>document.head</code> – the &lt;head&gt;
+                              section
+                         </li>
+                         <li>
+                              <code>document.body</code> – the &lt;body&gt;
+                              content
+                         </li>
+                         <li>
+                              <code>document.links</code>, <code>images</code>,
+                              <code>scripts</code>, etc.
+                         </li>
+                    </ul>
+               </section>
+
+               <section class="mb-5">
+                    <h2 class="text-warning">🔍 Exploring the DOM</h2>
+                    <p>
+                         You can narrow your exploration to parts of the page
+                         like this:
+                    </p>
+                    <pre><code>console.dir(document.body);</code></pre>
+
+                    <p>And modify them dynamically:</p>
+                    <pre><code>document.body.style.backgroundColor = "black";
+document.body.innerHTML = "&lt;h1&gt;Hello from JavaScript!&lt;/h1&gt;";</code></pre>
+
+                    <p>
+                         These lines change the page's appearance on the fly.
+                         That’s the power of the DOM!
+                    </p>
+               </section>
+
+               <section>
+                    <h2 class="text-warning">🧠 Why It Matters</h2>
+                    <p>Mastering the DOM is essential for:</p>
+                    <ul>
+                         <li>Reading or updating HTML content</li>
+                         <li>Reacting to user actions (clicks, input, etc.)</li>
+                         <li>Adding or removing elements dynamically</li>
+                         <li>Creating smooth interactive user experiences</li>
+                    </ul>
+
+                    <div class="alert alert-info mt-4">
+                         💡 <strong>Tip:</strong> Open your browser’s developer
+                         tools and run <code>console.dir(document)</code> to
+                         start exploring the live DOM.
+                    </div>
+               </section>
+
+               <section class="mt-5">
+                    <h2 class="text-warning">
+                         🧱 Selecting Elements with
+                         <code>document.getElementById()</code>
+                    </h2>
+                    <p>
+                         When you write HTML and CSS, you’re describing how a
+                         page should look — but the browser transforms that into
+                         a
+                         <span class="highlight">living object model</span>
+                         using JavaScript. These objects form a structured tree
+                         that you can interact with.
+                    </p>
+
+                    <p>One of the simplest ways to get an element is using:</p>
+
+                    <pre><code>document.getElementById("myElement");</code></pre>
+
+                    <p>
+                         This selects the element with the ID
+                         <code>myElement</code>. Let's say your HTML contains:
+                    </p>
+
+                    <pre><code>&lt;div id="myElement"&gt;Hello DOM&lt;/div&gt;</code></pre>
+
+                    <p>You can grab this element in JavaScript:</p>
+
+                    <pre><code>const a = document.getElementById("myElement");</code></pre>
+
+                    <p>
+                         Now <code>a</code> holds a reference to the real DOM
+                         object! You can inspect it using:
+                    </p>
+
+                    <pre><code>console.dir(a);</code></pre>
+
+                    <p>
+                         This will display all the properties and methods of the
+                         element — just like with <code>document</code>. You’ll
+                         see things like:
+                    </p>
+                    <ul>
+                         <li>
+                              <code>innerText</code> – the text inside the
+                              element
+                         </li>
+                         <li>
+                              <code>style</code> – an object representing all
+                              the inline styles
+                         </li>
+                         <li><code>children</code> – any nested DOM nodes</li>
+                    </ul>
+               </section>
+
+               <section class="mt-5">
+                    <h2 class="text-warning">
+                         🌳 Understanding the DOM Tree Structure
+                    </h2>
+                    <p>
+                         The DOM is hierarchical — think of it like a tree. At
+                         the top is the <code>document</code> object, and
+                         beneath it lie its children:
+                    </p>
+
+                    <pre><code>document
+├── head
+│   └── title, meta, link, script...
+└── body
+    ├── header
+    ├── main
+    │   └── section, article, div...
+    └── footer</code></pre>
+
+                    <p>
+                         Each tag you write in HTML becomes a
+                         <span class="highlight">JavaScript object</span> in
+                         this tree. You can walk through the tree
+                         programmatically using properties like
+                         <code>children</code>, <code>parentNode</code>, or
+                         <code>nextSibling</code>.
+                    </p>
+
+                    <p>Example:</p>
+                    <pre><code>console.dir(document.body.children[0]);</code></pre>
+                    <p>
+                         This would show the first element inside the body —
+                         maybe a <code>&lt;header&gt;</code>,
+                         <code>&lt;div&gt;</code>, etc.
+                    </p>
+
+                    <div class="alert alert-secondary mt-4">
+                         🧠 <strong>Remember:</strong> While HTML and CSS define
+                         structure and appearance, the browser converts them
+                         into objects — and <em>those</em> are what JavaScript
+                         manipulates.
+                    </div>
+               </section>
+
+               <section class="mt-5">
+                    <nav class="navbar bg-secondary text-white p-3 mb-4 ">
+  <h1 class="m-0">🛍️ Lot's of Choice – Picky Picky Picky 🥺</h1>
+  <p class="m-0"><em>I don't know what to get 🫠</em></p>
+</nav>
+                    <h2 class="text-warning">
+                         📸 Selecting Elements with
+                         <code>getElementsByTagName()</code>
+                    </h2>
+
+                    <p>
+                         If you want to grab
+                         <span class="highlight"
+                              >all elements of a certain tag</span
+                         >
+                         — like all <code>&lt;img&gt;</code>,
+                         <code>&lt;p&gt;</code>, or
+                         <code>&lt;section&gt;</code> tags — you can use:
+                    </p>
+
+                    <pre><code>document.getElementsByTagName("img");</code></pre>
+
+                    <p>
+                         This returns an
+                         <strong>HTMLCollection</strong> containing all matching
+                         elements. Example:
+                    </p>
+
+                    <pre><code>const allImages = document.getElementsByTagName("img");</code></pre>
+
+                    <p>Let’s try it in action with these beach images:</p>
+
+                    <div
+                         class="d-flex flex-wrap justify-content-center gap-3 mb-3"
+                         id="image-gallery"
+                    >
+                         <img
+                              src="https://images.unsplash.com/photo-1454391304352-2bf4678b1a7a?q=80&w=387&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                              width="200"
+                              class="rounded shadow"
+                              alt="Beach 1"
+                         />
+                         <img
+                              src="https://images.unsplash.com/photo-1414609245224-afa02bfb3fda?q=80&w=389&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                              width="200"
+                              class="rounded shadow"
+                              alt="Beach 2"
+                         />
+                         <img
+                              src="https://images.unsplash.com/photo-1510414842594-a61c69b5ae57?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                              width="200"
+                              class="rounded shadow"
+                              alt="Beach 3"
+                         />
+                         <img
+                              src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=873&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                              width="200"
+                              class="rounded shadow"
+                              alt="Beach 4"
+                         />
+                    </div>
+
+                    <div class="mb-4">
+                         <button
+                              class="btn btn-outline-info me-2"
+                              onclick="resizeImages()"
+                         >
+                              🔍 Enlarge All Images
+                         </button>
+                         <button
+                              class="btn btn-outline-warning"
+                              onclick="resetImageSize()"
+                         >
+                              🔄 Reset Image Size
+                         </button>
+                    </div>
+
+                    <p class="text-note">
+                         Hint: Press the button above to enlarge all beach
+                         images using JS and <code>getElementsByTagName</code>.
+                    </p>
+
+                    <h4 class="mt-4 text-primary">
+                         💡 What exactly is returned?
+                    </h4>
+                    <p>
+                         <code>getElementsByTagName()</code> returns an
+                         <code>HTMLCollection</code>,
+                         <strong>not an array</strong>. You can loop through it
+                         using a traditional <code>for</code> loop or
+                         <code>for...of</code>, but not with array methods like
+                         <code>map()</code> or <code>forEach()</code> (unless
+                         converted).
+                    </p>
+
+                    <pre><code>// Won't work:
+allImages.map(...); ❌
+
+// Will work:
+for (let img of allImages) {
+  console.log(img.src);
+}</code></pre>
+
+                    <h4 class="mt-4 text-primary">
+                         📚 What are these things inside?
+                    </h4>
+                    <p>
+                         Each item in the collection is an
+                         <strong>Element</strong> — a DOM object with many
+                         properties and methods:
+                    </p>
+
+                    <ul>
+                         <li><code>src</code> – source of an image</li>
+                         <li><code>width</code>, <code>height</code></li>
+                         <li><code>style</code> – allows dynamic styling</li>
+                         <li>
+                              <code>classList</code> – for adding/removing
+                              classes
+                         </li>
+                         <li>
+                              <code>setAttribute()</code>,
+                              <code>removeAttribute()</code>, etc.
+                         </li>
+                    </ul>
+
+                    <p>We can change their size like this:</p>
+
+                    <pre><code>for (let img of allImages) {
+  img.style.width = "300px";
+}</code></pre>
+
+                    <p class="alert alert-info mt-4">
+                         🌐 <strong>Common tag names you can select:</strong>
+                         <code>div</code>, <code>img</code>, <code>p</code>,
+                         <code>a</code>, <code>ul</code>, <code>li</code>,
+                         <code>h1</code>, <code>section</code>,
+                         <code>article</code>, etc.
+                    </p>
+               </section>
+
+               <div class="mb-4">
+                    <label for="tagInput" class="form-label text-light"
+                         >Type a Tag Name (e.g., <code>img</code>,
+                         <code>p</code>):</label
+                    >
+                    <input
+                         type="text"
+                         id="tagInput"
+                         class="form-control mb-2"
+                         placeholder="Enter tag name like 'img' or 'div'"
+                    />
+                    <button class="btn btn-primary" onclick="highlightTags()">
+                         🔦 Highlight Elements
+                    </button>
+                    <button
+                         class="btn btn-secondary ms-2"
+                         onclick="clearHighlights()"
+                    >
+                         ❌ Clear Highlights
+                    </button>
+               </div>
+
+               <section class="section">
+  <h2 class="section-title text-warning">📂 The Class Collector <code>getElementsByClassName()</code></h2>
+  <p>When you're looking for <strong>all elements that wear the same uniform</strong> (i.e., share a CSS class), this is your go-to method.</p>
+
+  <pre><code class="language-js">const coolBoxes = document.getElementsByClassName('cool');</code></pre>
+
+  <p>This returns an <strong>HTMLCollection</strong> of all the elements that have the class <code>cool</code>.</p>
+  <blockquote>&ldquo;Hey browser, give me everyone wearing the ‘cool’ T-shirt.&rdquo;</blockquote>
+
+  <h3>🧠 Things to know:</h3>
+  <ul>
+    <li>Returns a <strong>collection</strong>, not a single item.</li>
+    <li>You can <strong>loop</strong> over it with <code>for...of</code>, but not directly with <code>.map()</code>.</li>
+    <li>The result is <strong>live</strong> — it updates when the DOM changes.</li>
+  </ul>
+
+  <pre><code class="language-js">const allBoxes = document.getElementsByClassName('box');
+console.log(allBoxes.length);</code></pre>
+
+  <h2 class="section-title">❗ Difference from <code>getElementById()</code></h2>
+
+  <h3>🔹 <code>getElementById(id)</code></h3>
+  <ul>
+    <li>Returns <strong>just one element</strong>.</li>
+    <li>If not found: returns <code>null</code>.</li>
+    <li>Very fast and direct.</li>
+    <li><strong>Only one ID</strong> per document is valid.</li>
+  </ul>
+
+  <pre><code class="language-js">const logo = document.getElementById('site-logo');
+if (!logo) {
+  console.warn('No element with that ID found!');
+}</code></pre>
+
+  <h3>🔹 <code>getElementsByClassName(className)</code></h3>
+  <ul>
+    <li>Returns a <strong>collection</strong> of all matches.</li>
+    <li>Empty collection if none found — <strong>not null</strong>.</li>
+    <li>You can use the same class on many elements.</li>
+  </ul>
+
+  <table class="compare-table">
+    <thead>
+      <tr>
+        <th>Method</th>
+        <th>What it Does</th>
+        <th>Analogy</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>getElementById('uniqueHat')</code></td>
+        <td>Returns <strong>one</strong> element</td>
+        <td>"Find me that guy with the red top hat"</td>
+      </tr>
+      <tr>
+        <td><code>getElementsByClassName('blue-shirt')</code></td>
+        <td>Returns <strong>all</strong> elements</td>
+        <td>"Round up everyone wearing a blue shirt!"</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>🧪 Try It!</h3>
+  <pre><code class="language-js">const btn = document.getElementById('my-button'); // One item or null
+const cards = document.getElementsByClassName('card'); // Many or empty</code></pre>
+
+  <pre><code class="language-js">console.dir(btn); // Single object or null
+console.dir(cards); // Live HTMLCollection</code></pre>
+
+  <h3>⚠️ Pro Tip: Why it Matters</h3>
+  <pre><code class="language-js">const x = document.getElementById('not-there');
+console.log(x); // null
+x.style.color = 'red'; // ❌ TypeError</code></pre>
+
+  <pre><code class="language-js">const y = document.getElementsByClassName('nope');
+console.log(y.length); // 0 — safe</code></pre>
+</section>
+
+               <hr class="text-light">
+
+    <h2 class="text-info">🐶 Dogs with <code>class="square"</code></h2>
+    <div id="dog-gallery" class="d-flex flex-wrap gap-3 mb-3">
+      <img src="https://images.unsplash.com/photo-1530281700549-e82e7bf110d6?w=700&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8ZG9nfGVufDB8fDB8fHww" class="square rounded shadow" alt="Dog 1">
+      <img src="https://images.unsplash.com/photo-1517849845537-4d257902454a?w=700&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8ZG9nfGVufDB8fDB8fHww" class="square rounded shadow" alt="Dog 2">
+      <img src="https://images.unsplash.com/photo-1596492784531-6e6eb5ea9993?w=700&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MzR8fGRvZ3xlbnwwfHwwfHx8MA%3D%3D" alt="Dog 3">
+      <img src="https://images.unsplash.com/photo-1575859431774-2e57ed632664?w=700&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NDN8fGRvZ3xlbnwwfHwwfHx8MA%3D%3D" class="rounded shadow" alt="Dog 4">
+    </div>
+
+    <div class="mb-4">
+      <button class="btn btn-success" onclick="resetDogSizes()">🐶 Reset to Normal</button>
+      <button class="btn btn-warning ms-2" onclick="makeDogsSquare()">⬛ Make Squares</button>
+    </div>
+  </div>
+
+  <section class="section">
+  <h2 class="text-warning">🔍 querySelector & querySelectorAll – The Swiss Army Knife 🛠️</h2>
+  <p>
+    If <code>getElementById</code> is a sniper rifle and <code>getElementsByClassName</code> is a net, then <code>querySelector</code> is your full utility belt. It's the most versatile way to select elements — you can use <strong>any valid CSS selector</strong>.
+  </p>
+
+  <div class="code">
+    <pre><code>// Select the first <a> on the page
+const link = document.querySelector('a');
+
+// Select an element by class
+const box = document.querySelector('.box');
+
+// Select by ID
+const logo = document.querySelector('#logo');</code></pre>
+  </div>
+
+  <h3>🎯 Returns Only the First Match</h3>
+  <p>
+    <code>querySelector</code> returns only the <strong>first</strong> element that matches your selector. If you want all of them, use <code>querySelectorAll</code> instead.
+  </p>
+  <div class="code">
+    <pre><code>const firstDiv = document.querySelector('div');
+// Only the first <div> gets returned!</code></pre>
+  </div>
+
+  <h3>🧬 Chain Like CSS: Descendants, Types, Attributes</h3>
+  <p>You can chain selectors exactly like you would in a CSS stylesheet:</p>
+  <div class="code">
+    <pre><code>// Select an <a> tag inside a .card
+const cardLink = document.querySelector('.card a');
+
+// Select the 3rd list item
+const thirdItem = document.querySelector('ul li:nth-of-type(3)');
+
+// Select an <a> with a title attribute
+const titledLink = document.querySelector('a[title]');</code></pre>
+  </div>
+
+  <h3>➕ Adjacent Sibling Selector</h3>
+  <p>
+    Want the element that comes directly after another one? Use the <code>+</code> selector:
+  </p>
+  <div class="code">
+    <pre><code>// Selects the <p> immediately following an <h2>
+const nextParagraph = document.querySelector('h2 + p');</code></pre>
+  </div>
+
+  <h3 class="text-warning">🎮 Gotta Catch 'Em All! (with querySelectorAll)</h3>
+  <p>
+    Yes, it’s like Pokémon! <code>querySelectorAll</code> gets <em>all</em> elements that match your selector. You can loop over them using <code>forEach</code>:
+  </p>
+  <div class="code">
+    <pre><code>const allButtons = document.querySelectorAll('button');
+
+allButtons.forEach(btn => {
+  btn.style.backgroundColor = 'blue';
+});</code></pre>
+  </div>
+  <p>
+    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png" alt="Pikachu" width="64" height="64">
+    That’s right, Pikachu is ready to loop through every node with you! ⚡
+  </p>
+
+  <h3>✅ Summary</h3>
+  <ul>
+    <li><code>querySelector</code> = 1st match</li>
+    <li><code>querySelectorAll</code> = all matches</li>
+    <li>Use <strong>any CSS selector</strong>: tag, class, id, descendant, attribute, sibling…</li>
+    <li>Great for <strong>precise targeting</strong> in complex structures</li>
+  </ul>
+</section>
+
+<nav class="navbar bg-danger text-white p-3 mb-4 ">
+  <h1 class="m-0">🛠️ DOM DOM DOM – Manipulation City 🌉</h1>
+  <p class="m-0"><em>Not as emotionally damaging as manipulating your partner... just your HTML. 😅</em></p>
+</nav>
+
+<section class="section">
+  <h2 class="text-primary">🌉 Chapter: Manipulation City</h2>
+  <h3 class="text-warning">📌 Manipulating Text with innerText, textContent, and innerHTML</h3>
+  <p>When it comes to grabbing or updating the visible content inside elements, you've got three amigos:</p>
+  <ul>
+    <li><code>innerText</code></li>
+    <li><code>textContent</code></li>
+    <li><code>innerHTML</code></li>
+  </ul>
+
+  <h4>🧐 The Key Differences</h4>
+  <div class="code">
+    <pre><code>&lt;div id="hidden-text" style="display: none;"&gt;
+  This won't show up with innerText.
+&lt;/div&gt;
+
+const div = document.querySelector('#hidden-text');
+
+console.log(div.innerText);     // "" (ignores hidden text)
+console.log(div.textContent);  // "This won't show up with innerText."
+console.log(div.innerHTML);    // "This won't show up with innerText."</code></pre>
+  </div>
+
+  <p>
+    - <strong>innerText</strong>: Gets or sets the visible text (ignores elements hidden with <code>display: none</code>).<br>
+    - <strong>textContent</strong>: Gets all the text, even if it's hidden.<br>
+    - <strong>innerHTML</strong>: Gets or sets the entire HTML inside an element.
+  </p>
+
+  <h4>✏️ Editing with innerHTML</h4>
+  <div class="code">
+    <pre><code>const div = document.querySelector('#my-box');
+
+// Add bold HTML directly
+div.innerHTML = "&lt;strong&gt;Hello world!&lt;/strong&gt;";</code></pre>
+  </div>
+
+  <p><strong>innerText</strong> will just insert the text as-is, not render any HTML:</p>
+  <div class="code">
+    <pre><code>div.innerText = "&lt;strong&gt;Hello world!&lt;/strong&gt;"; 
+// This will literally show &lt;strong&gt;Hello world!&lt;/strong&gt;
+</code></pre>
+  </div>
+
+  <h4>➕ Appending with innerHTML +=</h4>
+  <p>You can even use <code>+=</code> to add more HTML inside the element:</p>
+  <div class="code">
+    <pre><code>const list = document.querySelector('ul');
+list.innerHTML += "&lt;li&gt;New Item&lt;/li&gt;";</code></pre>
+  </div>
+
+  
+
+  <h4>📍 Selecting Elements to Manipulate</h4>
+  <p>Use <code>document.querySelectorAll()</code> to grab all matching elements and update them:</p>
+  <div class="code">
+    <pre><code>const boxes = document.querySelectorAll('.card');
+
+boxes.forEach(card => {
+  card.innerText += " ✨ Updated!";
+});</code></pre>
+  </div>
+
+  <h3>✅ Summary</h3>
+  <ul>
+    <li><code>innerText</code> ignores hidden elements</li>
+    <li><code>textContent</code> includes all text (even hidden)</li>
+    <li><code>innerHTML</code> reads/writes HTML, and lets you use <code>+=</code> to add more</li>
+    <li>Great power = great responsibility (don't mess up your DOM!)</li>
+  </ul>
+</section>
+
+
+<h3 class="text-warning">🧩 Understanding getAttribute & setAttribute</h3>
+
+  <p>We can access and manipulate HTML attributes using different techniques in JavaScript.</p>
+  <ul>
+    <li><code>element.id</code> – Directly reads or writes the ID of an element.</li>
+    <li><code>getAttribute("attributeName")</code> – Retrieves the exact string from the HTML.</li>
+    <li><code>setAttribute("attributeName", value)</code> – Changes or adds a new attribute to the element.</li>
+  </ul>
+
+  <p>Here's a fun walkthrough:</p>
+
+   <p>Let's start with an element with the <code>id</code> of <code>banner</code>. Watch it transform!</p>
+  <div id="banner" class="d-flex justify-content-center align-items-center p-5  text-white fs-4 rounded shadow" style="min-height:150px;">
+    I am the Banner 🎉
+  </div>
+
+  <div class="mt-4">
+    <button class="btn btn-danger" id="changeBtn">Change ID to "whoops"</button>
+  </div>
+
+  <div class="mt-3">
+    <h5 class="text-decoration-underline">What Just Happened?</h5>
+    <p>We used <code>document.querySelector()</code> to grab the element with the id of <code>banner</code> and changed its id to <code>whoops</code>.</p>
+    <p>This can also be done with <code>getAttribute</code> and <code>setAttribute</code> methods. For example:</p>
+    <pre><code>const banner = document.querySelector('#banner');
+console.log(banner.id); // "banner"
+banner.id = 'whoops';
+<div class="mt-4">
+    <h5 class="text-decoration-underline">Console Feedback</h5>
+    <div id="logBox" class="bg-dark text-success p-3 rounded" style="min-height:100px;"></div>
+  </div>
+</div>
+
+<div class="mt-5">
+    <h3 class="text-decoration-underline text-warning">Changing Styles with JavaScript</h3>
+    <p>When you access styles via JavaScript, only the <strong>inline styles</strong> are directly accessible through the <code>.style</code> property. Styles defined in external CSS files or internal &lt;style&gt; tags aren't directly available this way due to possible multiple files and specificity issues.</p>
+    <p>To get the computed styles applied to an element, use:</p>
+    <pre><code>const h1 = document.querySelector('h1');
+const computedStyles = window.getComputedStyle(h1);
+console.log(computedStyles.fontSize);</code></pre>
+    <p>This allows you to inspect the actual final style values as rendered in the browser, regardless of whether they came from CSS files, inline styles, or elsewhere.</p>
+    <p>You can still manipulate styles directly by setting properties on the element's <code>style</code> object. Remember: JavaScript uses camelCase instead of kebab-case. For example:</p>
+    <pre><code>const h1 = document.querySelector('h1');
+h1.style.fontSize = '3rem'; // NOT h1.style.font-size</code></pre>
+    <p>This lets you override the CSS directly via JavaScript, applying changes instantly on the page.</p>
+    <p><strong>Note:</strong> In CSS, properties like <code>font-size</code> are written in kebab-case, but in JavaScript's DOM style manipulation, they must be written in camelCase like <code>fontSize</code>.</p>
+  </div>
+</div>
+
+<div class="mt-3">
+    <h3 class="text-decoration-underline text-warning">Using classList (Recommended Way)</h3>
+    <p>When you're manipulating classes, it's better to use <code>element.classList</code> instead of <code>getAttribute</code> and <code>setAttribute</code>. Here's why:</p>
+    <pre><code>// BAD WAY: overwrites all other classes
+const h2 = document.querySelector('h2');
+const currentClasses = h2.getAttribute('class');
+h2.setAttribute('class', `${currentClasses} purple`);
+
+// RECOMMENDED WAY:
+h2.classList.add('purple');     // Adds a class
+h2.classList.remove('text-dark'); // Removes a class
+h2.classList.toggle('visible');   // Toggles class presence
+h2.classList.contains('fs-4');    // Checks for a class</code></pre>
+    <p><strong>Why use <code>classList</code>?</strong> Because <code>setAttribute('class')</code> replaces the entire class list. That means if you just want to add a class, you'll need to first get the current class string, concatenate it, and set it again — a hassle and error-prone. <code>classList</code> makes it easier, cleaner, and safer.</p>
+  </div>
+
+
+
+  <h1 class="text-warning">Exploring DOM Family Tree</h1>
+
+  <section class="mb-4">
+    <p>Sometimes you don’t want just the element — you want to know who it’s related to. The DOM is like a big family. You can explore who’s the parent, child, or siblings using:</p>
+    <ul>
+      <li><code>parentElement</code></li>
+      <li><code>children</code></li>
+      <li><code>previousSibling</code> / <code>nextSibling</code></li>
+      <li><code>previousElementSibling</code> / <code>nextElementSibling</code></li>
+    </ul>
+  </section>
+
+   <div id="familyTree" class="dom-box">
+    <h2>Header</h2>
+    <ol>
+     <li><p>This is the first paragraph.</p></li>
+     <li><p>This is the second paragraph.</p></li>
+     <li class="target highlight"><p><span class="highlight">This is the target paragraph. </span></p></li>
+     <li><p>This is the fourth paragraph.</p></li>
+    </ol>
+  </div>
+
+  <section>
+    <h3 class="text-info">Console Log Output</h3>
+    <pre id="consoleOutput" class="bg-dark p-3 rounded"></pre>
+  </section>
+
+  <h2 class="text-warning">Let’s Add Stuff Dynamically!</h2>
+  <p>We'll use various DOM methods to add content into this box:</p>
+
+  <!-- Main container for append/prepend/appendChild/after -->
+  <div id="container" class="box">
+    <h3>Original Content</h3>
+  </div>
+  
+  <br/>
+  <p>
+     Well the color defines the two boxes. after() comes after the box so not a sibling.
+  </p>
+  <!-- Element to demonstrate insertAdjacentElement() -->
+  <div id="insertAdjacentDemo" class="box">
+    <h4>insertAdjacentElement(position,element) Target</h4>
+  </div>
+  <br/>
+  <br/>
+  <p>
+     beforebegin() comes before box not a sibling.
+     </p>
+     <p>
+     afterend() comes after the box so not a sibling.
+     </p>
+  
+          </main>
+          
+
+          <script src="script.js"></script>
+          <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+     </body>
+</html>
