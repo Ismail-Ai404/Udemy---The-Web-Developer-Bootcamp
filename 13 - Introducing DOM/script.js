@@ -179,3 +179,31 @@ function createTag(text) {
      el.className = "highlight";
      return el;
 }
+
+// RemoveChild Example
+const container2 = document.querySelector("#container2");
+const removeChildBtn = document.querySelector("#removeChildBtn");
+const removeBtn = document.querySelector("#removeBtn");
+
+removeChildBtn.addEventListener("click", () => {
+     const child = container2.querySelector(".highlight");
+     if (child) {
+          container2.removeChild(child);
+          console.log("✅ Removed a child using removeChild()");
+     } else {
+          console.log(
+               "⚠️ No more .highlight elements to remove with removeChild()"
+          );
+     }
+});
+
+// Remove Example
+removeBtn.addEventListener("click", () => {
+     const toRemove = container2.querySelector(".highlight");
+     if (toRemove) {
+          toRemove.remove();
+          console.log("✅ Removed a highlight element using remove()");
+     } else {
+          console.log("⚠️ No .highlight element left to remove using remove()");
+     }
+});

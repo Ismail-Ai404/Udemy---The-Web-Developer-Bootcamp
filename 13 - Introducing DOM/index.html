@@ -252,7 +252,7 @@ document.body.innerHTML = "&lt;h1&gt;Hello from JavaScript!&lt;/h1&gt;";</code><
                     <p>Let’s try it in action with these beach images:</p>
 
                     <div
-                         class="d-flex flex-wrap justify-content-center gap-3 mb-3"
+                         class="d-flex flex-wrap justify-content-center gap-3 mb-3 "
                          id="image-gallery"
                     >
                          <img
@@ -270,7 +270,7 @@ document.body.innerHTML = "&lt;h1&gt;Hello from JavaScript!&lt;/h1&gt;";</code><
                          <img
                               src="https://images.unsplash.com/photo-1510414842594-a61c69b5ae57?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                               width="200"
-                              class="rounded shadow"
+                              class="rounded shadow "
                               alt="Beach 3"
                          />
                          <img
@@ -747,6 +747,76 @@ h2.classList.contains('fs-4');    // Checks for a class</code></pre>
      afterend() comes after the box so not a sibling.
      </p>
   
+     
+
+  <h2 class="mb-4 text-warning">🗑️ Removing Elements in JavaScript</h2>
+
+  <div id="container2">
+    <p class="highlight">I'm the first paragraph (highlight)</p>
+    <p>I'm just another paragraph</p>
+    <p class="highlight">I'm the second paragraph (highlight)</p>
+  </div>
+
+  <button class="btn btn-danger mt-3" id="removeChildBtn">Remove using <code>removeChild()</code></button>
+  <button class="btn btn-warning mt-3 ms-2" id="removeBtn">Remove using <code>remove()</code></button>
+
+  <section class="mt-4">
+  <h2>🔍 Comparing <code>removeChild()</code> vs <code>remove()</code></h2>
+
+  <table class="table table-bordered table-striped mt-3">
+    <thead class="table-dark">
+      <tr>
+        <th>Feature</th>
+        <th><code>removeChild()</code></th>
+        <th><code>remove()</code></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>🧠 Basic Concept</td>
+        <td>Removes a child node from a parent</td>
+        <td>Removes the element directly</td>
+      </tr>
+      <tr>
+        <td>📜 Syntax</td>
+        <td><code>parent.removeChild(child)</code></td>
+        <td><code>element.remove()</code></td>
+      </tr>
+      <tr>
+        <td>📍 Requires Parent Reference?</td>
+        <td>✅ Yes</td>
+        <td>❌ No</td>
+      </tr>
+      <tr>
+        <td>🎯 Targeting</td>
+        <td>Must access the parent, then the child</td>
+        <td>Just access the element</td>
+      </tr>
+      <tr>
+        <td>🚀 Simplicity</td>
+        <td>❌ Slightly more verbose</td>
+        <td>✅ Very straightforward</td>
+      </tr>
+      <tr>
+        <td>🕰️ Browser Support</td>
+        <td>✅ Supported in all browsers</td>
+        <td>⚠️ Not supported in Internet Explorer</td>
+      </tr>
+      <tr>
+        <td>🔧 Example Code</td>
+        <td><code>parentEl.removeChild(childEl)</code></td>
+        <td><code>element.remove()</code></td>
+      </tr>
+      <tr>
+        <td>🛠️ When to Use</td>
+        <td>When you have both parent and child</td>
+        <td>When you just want to zap an element</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+
           </main>
           
 
