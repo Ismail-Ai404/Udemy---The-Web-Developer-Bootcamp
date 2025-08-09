@@ -17,5 +17,33 @@
                input of the user return if we do deliveries in the given
                ZIPcode. Will keep it basic and not add in styles.
           </p>
+
+          <h2>Company logo</h2>
+          <p id="message">
+               Please type in the zipcode to see if we do deliveries to you
+          </p>
+          <form action="">
+               <label for="zipCode"> Enter your ZIPcode:<br /> </label>
+               <br />
+               <input
+                    id="zipCode"
+                    name="zipCode"
+                    type="text"
+                    placeholder="zipcode"
+                    maxlength="7"
+                    list="defaultZips"
+                    required
+               />
+               <input type="submit" id="zipCode" />
+          </form>
+
+          <datalist id="defaultZips">
+               <option value="1100"></option>
+               <option value="2300"></option>
+               <option value="10003"></option>
+               <option value="3447"></option>
+          </datalist>
+
+          <script src="form.js"></script>
      </body>
 </html>
