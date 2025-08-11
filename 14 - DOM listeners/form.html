@@ -19,22 +19,20 @@
           </p>
 
           <h2>Company logo</h2>
-          <p id="message">
-               Please type in the zipcode to see if we do deliveries to you
-          </p>
-          <form action="">
+          <p>Please type in the zipcode to see if we do deliveries to you</p>
+          <form action="/shelter" id="zipCode">
                <label for="zipCode"> Enter your ZIPcode:<br /> </label>
                <br />
                <input
-                    id="zipCode"
+                    id="zipInput"
                     name="zipCode"
-                    type="text"
+                    type="tel"
                     placeholder="zipcode"
                     maxlength="7"
                     list="defaultZips"
                     required
                />
-               <input type="submit" id="zipCode" />
+               <button>submit</button>
           </form>
 
           <datalist id="defaultZips">
@@ -43,7 +41,7 @@
                <option value="10003"></option>
                <option value="3447"></option>
           </datalist>
-
+          <div id="message"></div>
           <script src="form.js"></script>
      </body>
 </html>
