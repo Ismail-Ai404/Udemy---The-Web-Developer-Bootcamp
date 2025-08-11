@@ -14,7 +14,11 @@ const scoreSelect = document.querySelector("#scoreSelect");
 
 scoreSelect.addEventListener("change", function () {
      winningScore = parseInt(this.value);
-     reset();
+     if (winningScore) {
+          // Hide select & label once game starts
+          scoreSelect.style.display = "none";
+          scoreSelectLabel.style.display = "none";
+     }
 });
 
 btn1.addEventListener("click", function () {
@@ -41,9 +45,16 @@ btn2.addEventListener("click", function () {
      }
 });
 
-btn3.addEventListener("click", reset);
+btn3.addEventListener("click", function () {
+     if (!gameOver) {
+          alert("The game hasn’t ended yet!");
+     } else {
+          reset();
+     }
+});
 
-function reset() {
+function reset(force = false) {
+     if (!force && !gameOver) return; // prevent reset unless forced or game ended
      oneScore = 0;
      twoScore = 0;
      gameOver = false;
@@ -51,4 +62,10 @@ function reset() {
      span2.textContent = 0;
      span1.style.color = "";
      span2.style.color = "";
+
+     // Show select & label again
+     scoreSelect.value = "";
+     scoreSelect.style.display = "inline-block";
+     scoreSelectLabel.style.display = "inline-block";
+     winningScore = 0;
 }
