@@ -22,11 +22,24 @@ const scoreSelect = document.querySelector("#scoreSelect");
 
 const game = scoreSelect.value;
 let count = 0;
+btn1.activeListener("click", function () {
+     span1.innerHTML = count + 1;
+     onePlayer();
+});
 
 while (game > count) {
-     btn1.activeListener("click", onePlayer());
-     btn2.activeListener("click", twoPlayer());
-     count;
+     btn1.activeListener("click", function () {
+          oneScore++;
+          span1.innerHTML = oneScore;
+          onePlayer();
+     });
+
+     btn1.activeListener("click", function () {
+          twoScore++;
+          span1.innerHTML = twoScore;
+          twoPlayerPlayer();
+     });
+     count++;
 }
 
 btn3.activeListener("click", reset());
