@@ -5,15 +5,6 @@ let twoScore = 0;
 let winningScore = 0;
 let gameOver = false;
 
-const onePlayer = () => oneScore++;
-const twoPlayer = () => twoScore++;
-
-function reset() {
-     oneScore = 0;
-     twoScore = 0;
-     count = 0;
-}
-
 const btn1 = document.querySelector(".btn1");
 const btn2 = document.querySelector(".btn2");
 const btn3 = document.querySelector(".btn3");
@@ -26,27 +17,38 @@ scoreSelect.addEventListener("change", function () {
      reset();
 });
 
-const game = scoreSelect.value;
-
-let count = 0;
-btn1.activeListener("click", function () {
-     span1.innerHTML = count + 1;
-     onePlayer();
+btn1.addEventListener("click", function () {
+     if (!gameOver && winningScore) {
+          oneScore++;
+          if (oneScore === winningScore) {
+               gameOver = true;
+               span1.style.color = "green";
+               span2.style.color = "red";
+          }
+          span1.textContent = oneScore;
+     }
 });
 
-while (game > count) {
-     btn1.activeListener("click", function () {
-          oneScore++;
-          span1.innerHTML = oneScore;
-          onePlayer();
-     });
-
-     btn1.activeListener("click", function () {
+btn2.addEventListener("click", function () {
+     if (!gameOver && winningScore) {
           twoScore++;
-          span1.innerHTML = twoScore;
-          twoPlayerPlayer();
-     });
-     count++;
-}
+          if (twoScore === winningScore) {
+               gameOver = true;
+               span2.style.color = "green";
+               span1.style.color = "red";
+          }
+          span2.textContent = twoScore;
+     }
+});
 
-btn3.activeListener("click", reset());
+btn3.addEventListener("click", reset);
+
+function reset() {
+     oneScore = 0;
+     twoScore = 0;
+     gameOver = false;
+     span1.textContent = 0;
+     span2.textContent = 0;
+     span1.style.color = "";
+     span2.style.color = "";
+}
