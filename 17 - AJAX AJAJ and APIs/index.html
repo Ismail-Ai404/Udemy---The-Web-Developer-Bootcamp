@@ -1,0 +1,896 @@
+<!-- @format -->
+<!DOCTYPE html>
+<html lang="en">
+     <head>
+          <meta charset="UTF-8" />
+          <title>
+               APIs 101 — AJAX → AJAJ, JSON, XHR, Fetch, Axios (Dark Demo)
+          </title>
+          <meta name="viewport" content="width=device-width, initial-scale=1" />
+          <!-- Google Font -->
+          <link
+               href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap"
+               rel="stylesheet"
+          />
+          <!-- Axios via jsDelivr CDN (official docs recommend this) -->
+          <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+          <style>
+               :root {
+                    --bg: #0b0f14;
+                    --panel: #121823;
+                    --muted: #92a0b3;
+                    --txt: #e6edf3;
+                    --accent: #6bb2ff;
+                    --accent-2: #a2ff6b;
+                    --danger: #ff6b6b;
+                    --card: #0f141c;
+                    --border: #1e2633;
+                    --mono: ui-monospace, SFMono-Regular, Menlo, Monaco,
+                         Consolas, "Liberation Mono", monospace;
+               }
+               /* Dark theme layout */
+               html,
+               body {
+                    height: 100%;
+               }
+               body {
+                    margin: 0;
+                    background: linear-gradient(
+                         120deg,
+                         #0b0f14 0%,
+                         #0c121a 50%,
+                         #0b0f14 100%
+                    );
+                    color: var(--txt);
+                    font-family: "Inter", system-ui, -apple-system, Segoe UI,
+                         Roboto, Arial, sans-serif;
+                    line-height: 1.5;
+               }
+               .wrap {
+                    max-width: 1100px;
+                    margin-inline: auto;
+                    padding: 32px 16px 80px;
+               }
+               h1 {
+                    font-size: 34px;
+                    margin: 0 0 8px;
+                    letter-spacing: 0.2px;
+               }
+               h2 {
+                    font-size: 22px;
+                    margin: 28px 0 10px;
+               }
+               p {
+                    color: var(--muted);
+               }
+               .grid {
+                    display: grid;
+                    gap: 16px;
+               }
+               .grid.cols-2 {
+                    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+               }
+               .card {
+                    background: linear-gradient(
+                         180deg,
+                         var(--panel),
+                         var(--card)
+                    );
+                    border: 1px solid var(--border);
+                    border-radius: 18px;
+                    padding: 18px;
+                    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.2);
+               }
+               .toolbar {
+                    display: flex;
+                    gap: 8px;
+                    flex-wrap: wrap;
+                    margin: 10px 0 4px;
+               }
+               button,
+               input,
+               select {
+                    background: #0e1622;
+                    color: var(--txt);
+                    border: 1px solid var(--border);
+                    padding: 10px 12px;
+                    border-radius: 12px;
+                    outline: none;
+                    font-weight: 600;
+               }
+               button {
+                    cursor: pointer;
+               }
+               button.primary {
+                    background: #10233a;
+                    border-color: #1e3b63;
+               }
+               button:hover {
+                    filter: brightness(1.1);
+               }
+               .muted {
+                    color: var(--muted);
+               }
+               .kbd {
+                    font-family: var(--mono);
+                    background: #0e1622;
+                    border: 1px solid var(--border);
+                    padding: 2px 6px;
+                    border-radius: 6px;
+               }
+               .mono {
+                    font-family: var(--mono);
+                    font-size: 13px;
+               }
+               .out {
+                    background: #0c121a;
+                    border: 1px dashed var(--border);
+                    padding: 12px;
+                    border-radius: 12px;
+                    white-space: pre-wrap;
+               }
+               .ok {
+                    color: var(--accent-2);
+               }
+               .bad {
+                    color: var(--danger);
+               }
+               table {
+                    width: 100%;
+                    border-collapse: separate;
+                    border-spacing: 0;
+                    font-size: 14px;
+               }
+               th,
+               td {
+                    padding: 10px 12px;
+                    border-bottom: 1px solid var(--border);
+               }
+               th {
+                    background: #101722;
+                    text-align: left;
+               }
+               .chip {
+                    display: inline-block;
+                    padding: 4px 8px;
+                    border-radius: 999px;
+                    border: 1px solid var(--border);
+                    background: #0d1622;
+                    color: #b9c6d4;
+                    font-size: 12px;
+                    margin-right: 6px;
+               }
+               .code {
+                    background: #0e1622;
+                    border: 1px solid #1b2533;
+                    padding: 10px 12px;
+                    border-radius: 12px;
+                    font-family: var(--mono);
+                    overflow: auto;
+               }
+               img.thumb {
+                    width: 100%;
+                    border-radius: 14px;
+                    border: 1px solid var(--border);
+                    background: #0b0f14;
+               }
+               .row {
+                    display: flex;
+                    gap: 10px;
+                    align-items: center;
+               }
+          </style>
+     </head>
+     <body>
+          <div class="wrap">
+               <header>
+                    <h1>Working with APIs — Dark Mode Crash Course</h1>
+                    <p>
+                         <strong>AJAX</strong> originally meant “Asynchronous
+                         JavaScript and <em>XML</em>”. Today we mostly
+                         send/receive <strong>JSON</strong> instead of XML, so
+                         it’s really <strong>AJAJ</strong> — but everyone still
+                         says “AJAX”. Same idea: make HTTP requests without
+                         reloading the page.
+                    </p>
+                    <div class="row">
+                         <span class="chip">AJAX = technique</span>
+                         <span class="chip">JSON = data format</span>
+                         <span class="chip">API = interface/contract</span>
+                    </div>
+               </header>
+
+               <section class="grid cols-2" aria-label="Concepts">
+                    <article class="card">
+                         <h2>APIs in plain language</h2>
+                         <p>
+                              Think of an API like a restaurant menu: you (the
+                              client) choose an item (<span class="kbd"
+                                   >endpoint</span
+                              >) and tell the kitchen (the server) what you want
+                              using an <span class="kbd">HTTP request</span>.
+                              The kitchen returns your dish (the
+                              <span class="kbd">response</span>) with a receipt
+                              (<span class="kbd">status code</span>) and
+                              sometimes extra details (<span class="kbd"
+                                   >headers</span
+                              >).
+                         </p>
+                         <div class="code mono">
+                              <!-- A tiny AJAX example -->
+                              <!-- We request JSON from a public API and update the page without refreshing -->
+                              <!-- Modern "AJAX" is typically done with fetch() or Axios (both use promises) -->
+                              fetch("https://httpstat.us/200").then(r =>
+                              r.text()).then(console.log);
+                         </div>
+                    </article>
+
+                    <article class="card">
+                         <h2>JSON in 20 seconds</h2>
+                         <p>
+                              JSON = JavaScript Object Notation. It’s just text
+                              shaped like JavaScript objects:
+                         </p>
+                         <div class="code mono">
+                              { "name": "Leia", "rank": "General", "allies":
+                              ["Rey","Finn"], "active": true, "missions": 42 }
+                         </div>
+                         <p class="mono">
+                              <!-- parse/stringify -->
+                              <span class="kbd">JSON.parse(text)</span> → text ➜
+                              object &nbsp;•&nbsp;
+                              <span class="kbd">JSON.stringify(obj)</span> →
+                              object ➜ text
+                         </p>
+                    </article>
+               </section>
+
+               <section class="grid cols-2" aria-label="API Clients">
+                    <article class="card">
+                         <h2>Postman &amp; Hoppscotch (GUI API clients)</h2>
+                         <p>
+                              Tools like Postman and Hoppscotch let you build
+                              requests visually, tweak
+                              <span class="kbd">headers</span>, bodies, and
+                              <span class="kbd">query strings</span>, then
+                              inspect JSON responses.
+                         </p>
+                         <ul class="mono">
+                              <li>
+                                   Postman: save collections, auth flows, and
+                                   test scripts.
+                              </li>
+                              <li>
+                                   Hoppscotch: lightweight, open-source, super
+                                   fast in the browser.
+                              </li>
+                         </ul>
+                         <p class="muted">
+                              Try: in Hoppscotch, GET
+                              <code>https://icanhazdadjoke.com/</code> with
+                              header <code>Accept: application/json</code> to
+                              see a random dad joke as JSON.
+                         </p>
+                    </article>
+
+                    <article class="card">
+                         <h2>Headers &amp; Query Strings</h2>
+                         <p>
+                              <strong>Headers</strong> are meta-data (e.g., “I
+                              want JSON”). <strong>Query strings</strong> tune
+                              the request:
+                              <code class="mono"
+                                   >/search?term=pizza&amp;limit=5</code
+                              >.
+                         </p>
+                         <div class="code mono">
+                              // Example header on icanhazdadjoke: Ask for JSON
+                              ⤵ fetch("https://icanhazdadjoke.com/", { headers:
+                              { "Accept": "application/json" } });
+                         </div>
+                    </article>
+               </section>
+
+               <!-- INTERACTIVE DEMOS -->
+               <section class="card" aria-label="Interactive Demos">
+                    <h2>Hands-on: click buttons to hit real APIs</h2>
+                    <div class="toolbar">
+                         <button id="btnJoke" class="primary">
+                              🎲 Random Dad Joke (fetch + header)
+                         </button>
+                         <button id="btnActivity">
+                              🎯 Random Activity (XHR)
+                         </button>
+                         <button id="btnActivityFetch">
+                              🎯 Random Activity (fetch + query)
+                         </button>
+                         <button id="btnHeaders">
+                              📦 Show Response Headers (fetch)
+                         </button>
+                    </div>
+
+                    <div class="toolbar">
+                         <input
+                              id="statusCodeInput"
+                              type="number"
+                              placeholder="Try 200, 301, 404, 500…"
+                         />
+                         <button id="btnStatus" class="primary">
+                              🔎 Test Status Code (httpstat.us)
+                         </button>
+                    </div>
+
+                    <div id="demoOut" class="out mono" aria-live="polite">
+                         Click a button to see live output…
+                    </div>
+               </section>
+
+               <section class="grid cols-2" aria-label="How to Code Requests">
+                    <article class="card">
+                         <h2>Old school: XHR (XMLHttpRequest)</h2>
+                         <p class="muted">
+                              We rarely write this by hand now—verbose,
+                              callback-y—but it’s the foundation.
+                         </p>
+                         <div class="code mono">
+                              /** XHR GET to Bored API */ const xhr = new
+                              XMLHttpRequest(); // 1) create request object
+                              xhr.open("GET",
+                              "https://bored-api.appbrewery.com/random", true);
+                              // 2) configure: method + URL (async)
+                              xhr.onreadystatechange = () => { // 3) fires many
+                              times as readyState changes if (xhr.readyState ===
+                              4) { // 4) 4 === DONE const isOk = xhr.status >=
+                              200 && xhr.status &lt; 300; // 5) basic success
+                              check const text = xhr.responseText; // 6) raw
+                              text try{ const data = JSON.parse(text); // 7)
+                              parse JSON logOut("XHR", isOk ? data : {error:
+                              xhr.status, body: text}); }catch(e){ logOut("XHR
+                              parse error", {text}); } } }; xhr.send(); // 8)
+                              fire!
+                         </div>
+                    </article>
+
+                    <article class="card">
+                         <h2>Modern: <code>fetch()</code></h2>
+                         <p class="muted">
+                              Promise-based, built-in. You still handle errors
+                              and JSON parsing yourself.
+                         </p>
+                         <div class="code mono">
+                              /** fetch GET with header + query */ const url =
+                              new URL("https://icanhazdadjoke.com/"); fetch(url,
+                              { headers: { "Accept": "application/json" } // ask
+                              for JSON (API requires it) }).then(res => { //
+                              read some header values (CORS allows a safelist)
+                              const type = res.headers.get("content-type");
+                              const ok = res.ok; // true for 2xx return
+                              res.json().then(data => ({ ok, type, data })); //
+                              parse body to JS object }).then(info =>
+                              logOut("fetch", info)) .catch(err => logOut("fetch
+                              error", { message: err.message }));
+                         </div>
+                    </article>
+
+                    <article class="card">
+                         <h2>Sleek: Axios</h2>
+                         <p class="muted">
+                              Axios wraps XHR under the hood, adds JSON by
+                              default, timeouts, interceptors, better errors,
+                              and simpler syntax.
+                         </p>
+                         <div class="code mono">
+                              /** Axios GET with headers */
+                              axios.get("https://bored-api.appbrewery.com/random",
+                              { headers: { "X-Demo": "Axios-Example" } // custom
+                              header example }).then(res => { // Axios gives
+                              data, status, headers as nice fields
+                              logOut("axios", { status: res.status, headers:
+                              res.headers, data: res.data }); }).catch(err => {
+                              logOut("axios error", { message: err.message,
+                              status: err.response?.status }); });
+                         </div>
+                    </article>
+
+                    <article class="card">
+                         <h2>Why Axios over raw XHR/Fetch?</h2>
+                         <table>
+                              <thead>
+                                   <tr>
+                                        <th>Feature</th>
+                                        <th>XHR</th>
+                                        <th>fetch()</th>
+                                        <th>Axios</th>
+                                   </tr>
+                              </thead>
+                              <tbody>
+                                   <tr>
+                                        <td>API style</td>
+                                        <td>Imperative callbacks</td>
+                                        <td>Promises</td>
+                                        <td>Promises + rich helpers</td>
+                                   </tr>
+                                   <tr>
+                                        <td>JSON handling</td>
+                                        <td>Manual parse</td>
+                                        <td>Manual <code>res.json()</code></td>
+                                        <td>Auto <code>res.data</code></td>
+                                   </tr>
+                                   <tr>
+                                        <td>Errors on HTTP &gt;= 400</td>
+                                        <td>Manual</td>
+                                        <td><code>res.ok</code> check</td>
+                                        <td>Rejects promise automatically</td>
+                                   </tr>
+                                   <tr>
+                                        <td>Timeouts</td>
+                                        <td>Manual</td>
+                                        <td>AbortController</td>
+                                        <td>Built-in option</td>
+                                   </tr>
+                                   <tr>
+                                        <td>Interceptors</td>
+                                        <td>No</td>
+                                        <td>No</td>
+                                        <td>Yes (auth, logging, retry)</td>
+                                   </tr>
+                                   <tr>
+                                        <td>Older browser support</td>
+                                        <td>Yes</td>
+                                        <td>Not IE</td>
+                                        <td>Yes (via XHR under the hood)</td>
+                                   </tr>
+                              </tbody>
+                         </table>
+                    </article>
+               </section>
+
+               <!-- TV SHOW SEARCH APP (TVMaze) -->
+               <section class="card" aria-label="TV Show App">
+                    <h2>Mini App: Search TV Shows (image, rating, genres)</h2>
+                    <p class="muted">
+                         Powered by the free TVMaze API. Type a title and press
+                         search.
+                    </p>
+
+                    <div class="toolbar">
+                         <input
+                              id="tvq"
+                              placeholder="e.g., breaking bad, friends, sherlock…"
+                         />
+                         <select id="client">
+                              <option value="fetch">Use fetch()</option>
+                              <option value="axios">Use Axios</option>
+                              <option value="xhr">Use XHR</option>
+                         </select>
+                         <button id="btnTv" class="primary">📺 Search</button>
+                    </div>
+
+                    <div id="tvOut" class="grid cols-2"></div>
+
+                    <details style="margin-top: 10px">
+                         <summary class="muted">
+                              How it works (line-by-line)
+                         </summary>
+                         <div class="code mono">
+                              /** * TVMaze endpoint: GET
+                              https://api.tvmaze.com/search/shows?q=&lt;query&gt;
+                              * Returns: [{ score, show: { name, image, rating,
+                              genres, ... } }, ...] * We support all three
+                              clients: XHR, fetch, and Axios. */
+                         </div>
+                    </details>
+               </section>
+
+               <section class="section-box">
+                    <h2 class="subtitle has-text-warning">Code Examples</h2>
+                    <p>Here’s how we can query the TVMaze API in three ways.</p>
+
+                    <h3 class="has-text-info">1. XHR</h3>
+                    <pre><code>// XHR Example
+const xhr = new XMLHttpRequest();
+xhr.open("GET", "https://api.tvmaze.com/search/shows?q=friends");
+xhr.onload = function() {
+  if (xhr.status === 200) {
+    const data = JSON.parse(xhr.responseText);
+    console.log(data);
+  }
+};
+xhr.send();</code></pre>
+
+                    <h3 class="has-text-info">2. Fetch API</h3>
+                    <pre><code>// Fetch Example
+fetch("https://api.tvmaze.com/search/shows?q=friends")
+  .then(res => res.json())
+  .then(data => console.log(data))
+  .catch(err => console.error(err));</code></pre>
+
+                    <h3 class="has-text-info">3. Axios</h3>
+                    <pre><code>// Axios Example
+axios.get("https://api.tvmaze.com/search/shows?q=friends")
+  .then(res => console.log(res.data))
+  .catch(err => console.error(err));</code></pre>
+               </section>
+
+               <!-- HTTP VERBS + STATUS -->
+               <section class="grid cols-2" aria-label="HTTP">
+                    <article class="card">
+                         <h2>HTTP Verbs (common)</h2>
+                         <ul class="mono">
+                              <li>
+                                   <strong>GET</strong> — read data (safe,
+                                   cacheable)
+                              </li>
+                              <li><strong>POST</strong> — create</li>
+                              <li><strong>PUT</strong> — replace</li>
+                              <li><strong>PATCH</strong> — partial update</li>
+                              <li><strong>DELETE</strong> — remove</li>
+                         </ul>
+                    </article>
+                    <article class="card">
+                         <h2>Status Codes</h2>
+                         <ul class="mono">
+                              <li><span class="ok">2xx</span> — success</li>
+                              <li>3xx — redirects</li>
+                              <li>
+                                   <span class="bad">4xx</span> — client errors
+                              </li>
+                              <li>
+                                   <span class="bad">5xx</span> — server errors
+                              </li>
+                         </ul>
+                    </article>
+               </section>
+               <section class="section-box">
+                    <h2 class="subtitle has-text-danger">
+                         Why Axios over XHR/Fetch?
+                    </h2>
+                    <table class="table is-striped is-hoverable">
+                         <thead>
+                              <tr>
+                                   <th>Feature</th>
+                                   <th>XHR</th>
+                                   <th>Fetch</th>
+                                   <th>Axios</th>
+                              </tr>
+                         </thead>
+                         <tbody>
+                              <tr>
+                                   <td>Simplicity</td>
+                                   <td>❌ Verbose</td>
+                                   <td>✔ Cleaner than XHR</td>
+                                   <td>✔✔ Easiest</td>
+                              </tr>
+                              <tr>
+                                   <td>Promise-based</td>
+                                   <td>❌</td>
+                                   <td>✔</td>
+                                   <td>✔</td>
+                              </tr>
+                              <tr>
+                                   <td>Automatic JSON</td>
+                                   <td>❌</td>
+                                   <td>❌ (need res.json())</td>
+                                   <td>✔</td>
+                              </tr>
+                              <tr>
+                                   <td>Works in Node.js</td>
+                                   <td>❌</td>
+                                   <td>❌</td>
+                                   <td>✔</td>
+                              </tr>
+                         </tbody>
+                    </table>
+               </section>
+               <footer class="muted" style="margin-top: 24px">
+                    Built for learning: AJAJ (JSON), headers, query strings,
+                    status codes, and three ways to request data.
+               </footer>
+          </div>
+
+          <script>
+               /* ===============================
+       Utility: append logs to output
+       =============================== */
+               const out = document.getElementById("demoOut");
+               function logOut(label, data) {
+                    const t =
+                         typeof data === "string"
+                              ? data
+                              : JSON.stringify(data, null, 2);
+                    out.textContent =
+                         `[${new Date().toLocaleTimeString()}] ${label}\n` + t;
+               }
+
+               /* ===========================================================
+       BUTTON 1: Random Dad Joke (fetch + required Accept header)
+       API: https://icanhazdadjoke.com/ (requires Accept: application/json)
+       Each click returns a (usually) different random joke.
+       =========================================================== */
+               document
+                    .getElementById("btnJoke")
+                    .addEventListener("click", () => {
+                         fetch("https://icanhazdadjoke.com/", {
+                              headers: { Accept: "application/json" }, // Tell server we want JSON back
+                         })
+                              .then((res) => res.json()) // Convert response stream → JS object
+                              .then((j) =>
+                                   logOut("Dad Joke", {
+                                        id: j.id,
+                                        joke: j.joke,
+                                   })
+                              )
+                              .catch((err) =>
+                                   logOut("Joke error", err.message)
+                              );
+                    });
+
+               /* ===========================================================
+       BUTTON 2: Random Activity (XHR)
+       API: https://bored-api.appbrewery.com/random (no auth, CORS-friendly)
+       Demonstrates classic XMLHttpRequest usage.
+       =========================================================== */
+               document
+                    .getElementById("btnActivity")
+                    .addEventListener("click", () => {
+                         const xhr = new XMLHttpRequest(); // 1) create XHR object
+                         xhr.open(
+                              "GET",
+                              "https://bored-api.appbrewery.com/random",
+                              true
+                         ); // 2) configure
+                         xhr.onreadystatechange = () => {
+                              // 3) listen for ready state changes
+                              if (xhr.readyState === 4) {
+                                   // 4) done
+                                   try {
+                                        const data = JSON.parse(
+                                             xhr.responseText
+                                        ); // parse JSON
+                                        logOut("Activity (XHR)", data); // log data
+                                   } catch (e) {
+                                        logOut(
+                                             "Activity (XHR parse error)",
+                                             xhr.responseText
+                                        );
+                                   }
+                              }
+                         };
+                         xhr.send(); // 5) send the request
+                    });
+
+               /* ===========================================================
+       BUTTON 3: Random Activity (fetch + query string)
+       API supports filtering by query params (see docs variants)
+       We'll randomly request by participants=1..4 to vary output.
+       =========================================================== */
+               document
+                    .getElementById("btnActivityFetch")
+                    .addEventListener("click", () => {
+                         const participants = Math.floor(Math.random() * 4) + 1; // 1..4
+                         const url = new URL(
+                              "https://bored-api.appbrewery.com/filter"
+                         );
+                         url.searchParams.set(
+                              "participants",
+                              String(participants)
+                         );
+                         // We'll just fetch the filtered list and pick a random item client-side
+                         fetch(url)
+                              .then((res) => res.json())
+                              .then((list) => {
+                                   if (
+                                        !Array.isArray(list) ||
+                                        list.length === 0
+                                   )
+                                        throw new Error("No activities found");
+                                   const pick =
+                                        list[
+                                             Math.floor(
+                                                  Math.random() * list.length
+                                             )
+                                        ];
+                                   logOut("Activity (fetch+query)", {
+                                        participants,
+                                        pick,
+                                   });
+                              })
+                              .catch((err) =>
+                                   logOut("Activity error", err.message)
+                              );
+                    });
+
+               /* ===========================================================
+       BUTTON 4: Show Response Headers (fetch)
+       We'll hit the dad joke endpoint and enumerate readable headers.
+       Note: Browsers only expose "CORS-safelisted" headers.
+       =========================================================== */
+               document
+                    .getElementById("btnHeaders")
+                    .addEventListener("click", () => {
+                         fetch("https://icanhazdadjoke.com/", {
+                              headers: { Accept: "application/json" },
+                         })
+                              .then((res) => {
+                                   const headers = {};
+                                   // Iterate Headers object
+                                   res.headers.forEach(
+                                        (v, k) => (headers[k] = v)
+                                   );
+                                   return res.text().then((body) => ({
+                                        status: res.status,
+                                        headers,
+                                        sampleBody: body.slice(0, 120) + "…",
+                                   }));
+                              })
+                              .then((info) => logOut("Headers (fetch)", info))
+                              .catch((err) =>
+                                   logOut("Headers error", err.message)
+                              );
+                    });
+
+               /* ===========================================================
+       STATUS TESTER: Try any HTTP status with httpstat.us
+       Example: 200 (OK), 301 (redirect), 404 (not found), 500 (server error)
+       We'll show .ok and .status and body text.
+       =========================================================== */
+               document
+                    .getElementById("btnStatus")
+                    .addEventListener("click", () => {
+                         const code =
+                              document.getElementById("statusCodeInput")
+                                   .value || "200";
+                         const url = `https://httpstat.us/${code}`;
+                         fetch(url, { redirect: "manual" }) // don't auto-follow redirects
+                              .then(async (res) => {
+                                   const body = await res.text();
+                                   logOut("Status check", {
+                                        url,
+                                        ok: res.ok,
+                                        status: res.status,
+                                        body: body.trim().slice(0, 160) + "…",
+                                   });
+                              })
+                              .catch((err) =>
+                                   logOut("Status error", err.message)
+                              );
+                    });
+
+               /* ===========================================================
+       TV SHOW SEARCH: fetch / axios / XHR versions against TVMaze
+       Endpoint: https://api.tvmaze.com/search/shows?q=<query>
+       We display: image (medium), rating.average, genres[]
+       =========================================================== */
+               const tvOut = document.getElementById("tvOut");
+
+               function renderShows(items) {
+                    tvOut.innerHTML = ""; // clear old results
+                    if (!Array.isArray(items) || items.length === 0) {
+                         tvOut.innerHTML = `<p class="muted">No results.</p>`;
+                         return;
+                    }
+                    for (const it of items) {
+                         const s = it.show || it; // API returns {score, show}
+                         // Safe fallbacks
+                         const name = s.name ?? "Untitled";
+                         const img = s.image?.medium || s.image?.original || "";
+                         const rating = s.rating?.average ?? "—";
+                         const genres = Array.isArray(s.genres)
+                              ? s.genres.join(", ")
+                              : "—";
+
+                         const card = document.createElement("div");
+                         card.className = "card";
+                         card.innerHTML = `
+          ${
+               img
+                    ? `<img class="thumb" alt="${name}" src="${img}" loading="lazy">`
+                    : `<div class="thumb" style="height:180px; display:grid; place-items:center; color:#789;">No Image</div>`
+          }
+          <h3 style="margin:10px 0 4px">${name}</h3>
+          <div class="muted">⭐ Rating: <strong>${rating}</strong></div>
+          <div class="muted">🎭 Genres: <strong>${genres}</strong></div>
+        `;
+                         tvOut.appendChild(card);
+                    }
+               }
+
+               // FETCH client
+               async function tvFetch(query) {
+                    const url = new URL("https://api.tvmaze.com/search/shows");
+                    url.searchParams.set("q", query);
+                    const res = await fetch(url);
+                    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+                    return res.json(); // -> [{score, show:{...}}, ...]
+               }
+
+               // AXIOS client
+               async function tvAxios(query) {
+                    const res = await axios.get(
+                         "https://api.tvmaze.com/search/shows",
+                         {
+                              params: { q: query }, // Axios auto-builds query string
+                              headers: { "X-Client": "Axios Demo" }, // demonstrate custom header usage
+                         }
+                    );
+                    return res.data; // Axios already parsed JSON
+               }
+
+               // XHR client
+               function tvXHR(query) {
+                    return new Promise((resolve, reject) => {
+                         const xhr = new XMLHttpRequest();
+                         const url =
+                              "https://api.tvmaze.com/search/shows?q=" +
+                              encodeURIComponent(query);
+                         xhr.open("GET", url, true);
+                         xhr.onreadystatechange = () => {
+                              if (xhr.readyState === 4) {
+                                   if (xhr.status >= 200 && xhr.status < 300) {
+                                        try {
+                                             resolve(
+                                                  JSON.parse(xhr.responseText)
+                                             );
+                                        } catch (e) {
+                                             reject(e);
+                                        }
+                                   } else {
+                                        reject(new Error("HTTP " + xhr.status));
+                                   }
+                              }
+                         };
+                         xhr.send();
+                    });
+               }
+
+               document
+                    .getElementById("btnTv")
+                    .addEventListener("click", async () => {
+                         const q = document.getElementById("tvq").value.trim();
+                         if (!q) return alert("Type a show name first 🙂");
+                         const mode = document.getElementById("client").value;
+
+                         try {
+                              if (mode === "fetch") {
+                                   const data = await tvFetch(q);
+                                   renderShows(data);
+                                   logOut("TV (fetch)", {
+                                        count: data.length,
+                                        sample: data[0]?.show?.name,
+                                   });
+                              } else if (mode === "axios") {
+                                   const data = await tvAxios(q);
+                                   renderShows(data);
+                                   logOut("TV (axios)", {
+                                        count: data.length,
+                                        sample: data[0]?.show?.name,
+                                   });
+                              } else {
+                                   const data = await tvXHR(q);
+                                   renderShows(data);
+                                   logOut("TV (XHR)", {
+                                        count: data.length,
+                                        sample: data[0]?.show?.name,
+                                   });
+                              }
+                         } catch (err) {
+                              renderShows([]);
+                              logOut("TV error", err.message);
+                         }
+                    });
+
+               /* ===========================================================
+       Bonus: tiny Axios interceptor example (why Axios is nice)
+       Interceptors let you log, inject auth, retry, handle errors centrally.
+       =========================================================== */
+               axios.interceptors.response.use(
+                    (res) => res, // pass through on success
+                    (err) => {
+                         // decorate the error message for demo
+                         err.message = "[Axios Interceptor] " + err.message;
+                         return Promise.reject(err);
+                    }
+               );
+          </script>
+     </body>
+</html>
