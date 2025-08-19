@@ -1,0 +1,47 @@
+<!-- @format -->
+
+<!DOCTYPE html>
+<html lang="en">
+     <head>
+          <meta charset="UTF-8" />
+          <title><%= pokemon.name.toUpperCase() %> — Details</title>
+     </head>
+     <body>
+          <a href="/">← Back</a>
+          <h1>
+               #<%= String(pokemon.id).padStart(4, "0") %> — <%=
+               pokemon.name.toUpperCase() %>
+          </h1>
+          <img
+               src="<%= pokemon.sprites.front_default %>"
+               alt="<%= pokemon.name %>"
+          />
+
+          <h2>Stats</h2>
+          <ul>
+               <% pokemon.stats.forEach(s => { %>
+               <li><strong><%= s.stat.name %>:</strong> <%= s.base_stat %></li>
+               <% }) %>
+          </ul>
+
+          <h2>Abilities</h2>
+          <ul>
+               <% pokemon.abilities.forEach(a => { %>
+               <li>
+                    Slot <%= a.slot %>: <%= a.ability.name %> <%= a.is_hidden ?
+                    "(Hidden)" : "" %>
+               </li>
+               <% }) %>
+          </ul>
+
+          <h2>Types</h2>
+          <ul>
+               <% pokemon.types.forEach(t => { %>
+               <li>Slot <%= t.slot %>: <%= t.type.name.toUpperCase() %></li>
+               <% }) %>
+          </ul>
+
+          <p><strong>Weight:</strong> <%= pokemon.weight %></p>
+          <p><strong>Height:</strong> <%= pokemon.height %></p>
+     </body>
+</html>
