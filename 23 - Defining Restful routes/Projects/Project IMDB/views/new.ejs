@@ -1,0 +1,134 @@
+<!-- @format -->
+
+<%- include('partials/head') %>
+
+<h1 class="text-center my-4">Add a New Movie</h1>
+
+<div class="container">
+     <!-- Movie Poster Preview -->
+     <div id="posterPreview" class="text-center mb-4">
+          <img
+               id="posterImg"
+               src=""
+               alt="Movie Poster"
+               style="max-width: 200px; display: none; border-radius: 8px"
+          />
+     </div>
+
+     <!-- Movie Form -->
+     <form
+          id="movieForm"
+          action="/movie"
+          method="POST"
+          class="p-4 bg-dark text-light rounded shadow"
+     >
+          <div class="mb-3">
+               <label for="selectMovie" class="form-label"
+                    >Select a Movie to Prefill</label
+               >
+               <select id="selectMovie" class="form-select">
+                    <option value="">-- Choose a Movie --</option>
+                    <% moreMovies.forEach((movie, index) => { %>
+                    <option value="<%= index %>">
+                         <%= movie.title %> (⭐ <%= movie.rating %>)
+                    </option>
+                    <% }) %>
+               </select>
+          </div>
+
+          <div class="mb-3">
+               <label for="title" class="form-label">Movie Title</label>
+               <input
+                    type="text"
+                    class="form-control"
+                    id="title"
+                    name="title"
+                    required
+               />
+          </div>
+
+          <div class="mb-3">
+               <label for="rating" class="form-label">Rating</label>
+               <input
+                    type="number"
+                    step="0.1"
+                    class="form-control"
+                    id="rating"
+                    name="rating"
+                    required
+               />
+          </div>
+
+          <div class="mb-3">
+               <label for="img" class="form-label">Poster URL</label>
+               <input
+                    type="text"
+                    class="form-control"
+                    id="img"
+                    name="img"
+                    required
+               />
+          </div>
+
+          <div class="mb-3">
+               <label for="id" class="form-label">IMDB ID</label>
+               <input
+                    type="text"
+                    class="form-control"
+                    id="id"
+                    name="id"
+                    required
+               />
+          </div>
+
+          <button type="submit" class="btn btn-warning w-100">
+               Submit Movie
+          </button>
+     </form>
+</div>
+
+<script>
+     // Pass EJS array into JS
+     const moreMovies = <%- JSON.stringify(moreMovies) %>;
+
+     const selectMovie = document.getElementById("selectMovie");
+     const titleInput = document.getElementById("title");
+     const ratingInput = document.getElementById("rating");
+     const imgInput = document.getElementById("img");
+     const idInput = document.getElementById("id");
+     const posterImg = document.getElementById("posterImg");
+
+     selectMovie.addEventListener("change", () => {
+       const index = selectMovie.value;
+
+       if (index !== "") {
+         const movie = moreMovies[index];
+         titleInput.value = movie.title;
+         ratingInput.value = movie.rating;
+         imgInput.value = movie.img;
+         idInput.value = movie.id;
+
+         // Show poster preview
+         posterImg.src = movie.img;
+         posterImg.style.display = "block";
+       } else {
+         // Clear form and hide poster
+         titleInput.value = "";
+         ratingInput.value = "";
+         imgInput.value = "";
+         idInput.value = "";
+         posterImg.style.display = "none";
+         posterImg.src = "";
+       }
+     });
+
+     // Optional: update poster if user edits img field manually
+     imgInput.addEventListener("input", () => {
+       if (imgInput.value.trim() !== "") {
+         posterImg.src = imgInput.value.trim();
+         posterImg.style.display = "block";
+       } else {
+         posterImg.style.display = "none";
+       }
+     });
+</script>

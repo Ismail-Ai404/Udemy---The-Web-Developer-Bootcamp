@@ -1,0 +1,45 @@
+<!-- @format -->
+
+<%- include('partials/head') %>
+
+
+<h1>Top Movies</h1>
+
+     <div class="container">
+
+<div class="row g-4 justify-content-center">
+
+     <% topMovies.forEach(movie => { %>
+
+     <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+
+          <div class="card movie-card text-center h-100">
+
+               <img
+                    src="<%= movie.img %>"
+                    class="card-img-top"
+                    alt="<%= movie.title %> poster"
+               />
+
+               <div class="card-body">
+                    <h5 class="card-title">
+                         <%= movie.title %>
+                    </h5>
+                    <p class="card-text rating">
+                         ⭐ <%= movie.rating %>
+                    </p>
+               </div>
+               <div><button>Edit</button></div>
+               <div><button>Delete</button></div>
+          </div>
+     </div>
+     <% }) %>
+</div>
+</div>
+
+<a href="movie/new"><button>Add a new Movie</button></a>
+
+          <!-- Bootstrap JS -->
+          <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+     </body>
+</html>

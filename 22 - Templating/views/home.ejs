@@ -43,6 +43,11 @@
                     text-align: center;
                     padding: 15px;
                     transition: transform 0.2s;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: center;
+                    height: 100%;
                }
 
                .pokemon-card:hover {
@@ -51,11 +56,22 @@
 
                .pokemon-card img {
                     width: 96px;
+                    margin-bottom: 10px;
                }
 
-               a.pokemon-link {
-                    text-decoration: none;
-                    color: inherit;
+               .type-badge {
+                    display: inline-block;
+                    padding: 5px 10px;
+                    border-radius: 5px;
+                    color: white;
+                    font-weight: bold;
+                    text-transform: uppercase;
+                    transition: transform 0.3s ease, box-shadow 0.3s ease;
+               }
+
+               .type-badge:hover {
+                    transform: scale(1.1);
+                    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
                }
           </style>
      </head>
@@ -82,6 +98,17 @@
                                    class="pokemon-card card"
                                    onmouseover="playSound('<%= key %>')"
                                    onmouseout="stopSound('<%= key %>')"
+                                   style="
+                                        background: linear-gradient(
+                                             135deg,
+                                             <%=
+                                                  typeColors[p.types[0].type.name]
+                                                  || '#A8A878' %>,
+                                             <%=
+                                                  typeColors[p.types[1]?.type.name]
+                                                  || '#A8A878' %>
+                                        );
+                                   "
                               >
                                    <h2>
                                         #<%= String(p.id).padStart(4, "0") %> —
@@ -92,13 +119,27 @@
                                         alt="<%= p.name %>"
                                    />
                                    <p>
-                                        Type(s): <%= p.types.map(t =>
-                                        t.type.name.toUpperCase()).join(', ') %>
+                                        <% p.types.forEach(function(t) { %>
+
+                                        <span
+                                             class="type-badge"
+                                             style="
+                                                  background: <%=
+                                                       typeGradients[t.type.name]
+                                                       ||
+                                                       'linear-gradient(to right, #A8A878, #E0E0A0)'
+                                                       %>;
+                                             "
+                                        >
+                                             <%= t.type.name.toUpperCase() %>
+                                        </span>
+
+                                        <% }); %>
                                    </p>
                               </div>
                          </a>
                     </div>
-                    <% }) %>
+                    <% }); %>
                </div>
           </div>
 
@@ -112,6 +153,7 @@
                          audio.play();
                     }
                }
+
                function stopSound(name) {
                     const audio = document.getElementById(`sound-${name}`);
                     if (audio) {
