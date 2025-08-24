@@ -29,8 +29,11 @@
                          ⭐ <%= movie.rating %>
                     </p>
                </div>
-               <div><button>Edit</button></div>
-               <div><button>Delete</button></div>
+               <div><a href="movie/<%= movie.id %>/edit"><button>Edit</button></a></div>
+               <div>
+                    <form method="POST" action="/movie/<%= movie.id %>?_method=DELETE" >
+                    <button>Delete</button>
+               </form></div>
           </div>
      </div>
      <% }) %>

@@ -3,11 +3,13 @@
 const express = require("express");
 const path = require("path");
 const { json } = require("stream/consumers");
+const methodOverride = require("method-override");
 
 const app = express();
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(methodOverride("_method"));
 
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
@@ -122,6 +124,30 @@ app.get("/movie/new", (req, res) => {
 app.post("/movie", (req, res) => {
      const { id, title, rating, img } = req.body;
      topMovies.push({ id, title, rating, img });
+     res.redirect("/movie");
+});
+
+// Display edit form for selected movie
+app.get("/movie/:id/edit", (req, res) => {
+     const { id } = req.params;
+     const movie = topMovies.find((m) => m.id === id);
+     if (!movie) return res.status(404).send("Movie not found");
+     res.render("edit", { movie });
+});
+
+// Handle form submission as PATCH
+app.patch("/movie/:id", (req, res) => {
+     const { id } = req.params;
+     const { rating } = req.body;
+     const movie = topMovies.find((m) => m.id === id);
+     if (!movie) return res.status(404).send("Movie not found");
+     movie.rating = rating;
+     res.redirect("/movie");
+});
+
+app.delete("/movie/:id", (res, req) => {
+     const { id } = req.params;
+     topMovies = topMovies.filter((m) => m.id !== id);
      res.redirect("/movie");
 });
 
